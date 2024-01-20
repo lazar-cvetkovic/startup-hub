@@ -11,7 +11,7 @@ namespace DatabaseBroker
 
         public DBConnection()
         {
-            _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["vezbesreda"].ConnectionString);
+            _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["startuphub"].ConnectionString);
         }
 
         public void OpenConnection()

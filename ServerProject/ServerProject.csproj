@@ -58,6 +58,22 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="SystemOperations\Create\CreateEventRegistrationSO.cs" />
+    <Compile Include="SystemOperations\Create\CreateFundingProgramSO.cs" />
+    <Compile Include="SystemOperations\Create\CreateStartupEventSO.cs" />
+    <Compile Include="SystemOperations\Delete\DeleteStartupEventSO.cs" />
+    <Compile Include="SystemOperations\Find\FindEventRegistrationsSO.cs" />
+    <Compile Include="SystemOperations\Find\FindStartupEventsSO.cs" />
+    <Compile Include="SystemOperations\Load\LoadEventRegistrationSO.cs" />
+    <Compile Include="SystemOperations\Load\LoadStartupEventsCollectionSO .cs" />
+    <Compile Include="SystemOperations\Load\LoadStartupEventSO.cs" />
+    <Compile Include="SystemOperations\Save\SaveEventRegistrationSO.cs" />
+    <Compile Include="SystemOperations\Save\SaveStartupEventSO.cs" />
+    <Compile Include="SystemOperations\Find\FindFundingProgramsSO.cs" />
+    <Compile Include="SystemOperations\Load\LoadFundingProgramSO.cs" />
+    <Compile Include="SystemOperations\Login\RegisterUserSO.cs" />
+    <Compile Include="SystemOperations\Save\SaveFundingProgramSO.cs" />
+    <Compile Include="SystemOperations\Save\SaveUserSO.cs" />
     <Compile Include="SystemOperations\SystemOperationBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,5 +107,6 @@
       <Name>DatabaseBroker</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

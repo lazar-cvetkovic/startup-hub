@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Interfaces;
 
 namespace DatabaseBroker
 {
@@ -30,6 +33,66 @@ namespace DatabaseBroker
 
         #endregion
 
+        public List<IEntity> GetAll(IEntity entity)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = $"select * from {entity.TableName}";
 
+                using (var reader = command.ExecuteReader())
+                {
+                    return entity.GetReaderList(reader);
+                }
+            }
+        }
+
+        public void Insert(IEntity entity)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = $"INSERT INTO {entity.TableName} VALUES ({entity.Values})";
+                entity.AddSqlParameters(command);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Update(IEntity entity)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = $"UPDATE {entity.TableName} SET {entity.UpdateValues} WHERE {entity.PrimaryKey}";
+                entity.AddSqlParameters(command);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Delete(IEntity entity)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = $"DELETE FROM {entity.TableName} WHERE {entity.PrimaryKey}";
+                entity.AddSqlParameters(command);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public IEntity FindById(IEntity prototype, Dictionary<string, int> ids)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                var whereClauses = ids.Select(id => $"{id.Key} = @{id.Key}").ToList();
+                command.CommandText = $"SELECT * FROM {prototype.TableName} WHERE {string.Join(" AND ", whereClauses)}";
+
+                foreach (var id in ids)
+                {
+                    command.Parameters.AddWithValue($"@{id.Key}", id.Value);
+                }
+
+                using (var reader = command.ExecuteReader())
+                {
+                    return reader.Read() ? prototype.CreateEntity(reader) : null;
+                }
+            }
+        }
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="Enums\RegistrationStatus.cs" />
     <Compile Include="Helpers\HelperMethods.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
