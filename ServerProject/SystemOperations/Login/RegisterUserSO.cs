@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ServerProject.SystemOperations
 {
-    internal class RegisterUserSO
+    internal class RegisterUserSO : SystemOperationBase
     {
+        protected override void ExecuteConcreteOperation()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

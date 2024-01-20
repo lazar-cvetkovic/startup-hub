@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Domain;
 using Common.Interfaces;
 
 namespace DatabaseBroker
@@ -33,11 +34,14 @@ namespace DatabaseBroker
 
         #endregion
 
-        public List<IEntity> GetAll(IEntity entity)
+        public List<IEntity> GetAll(IEntity entity, string condition = null)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = $"select * from {entity.TableName}";
+                string query = $"SELECT * FROM {entity.TableName}";
+                query = (condition == null) ? query : (query + $" WHERE {condition}");
+
+                command.CommandText = query;
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -76,12 +80,12 @@ namespace DatabaseBroker
             }
         }
 
-        public IEntity FindById(IEntity prototype, Dictionary<string, int> ids)
+        public IEntity FindById(IEntity entity, Dictionary<string, int> ids)
         {
             using (var command = _connection.CreateCommand())
             {
                 var whereClauses = ids.Select(id => $"{id.Key} = @{id.Key}").ToList();
-                command.CommandText = $"SELECT * FROM {prototype.TableName} WHERE {string.Join(" AND ", whereClauses)}";
+                command.CommandText = $"SELECT * FROM {entity.TableName} WHERE {string.Join(" AND ", whereClauses)}";
 
                 foreach (var id in ids)
                 {
@@ -90,7 +94,7 @@ namespace DatabaseBroker
 
                 using (var reader = command.ExecuteReader())
                 {
-                    return reader.Read() ? prototype.CreateEntity(reader) : null;
+                    return reader.Read() ? entity.CreateEntity(reader) : null;
                 }
             }
         }
