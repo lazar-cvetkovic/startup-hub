@@ -61,6 +61,7 @@
     <Compile Include="SystemOperations\Create\CreateEventRegistrationSO.cs" />
     <Compile Include="SystemOperations\Create\CreateFundingProgramSO.cs" />
     <Compile Include="SystemOperations\Create\CreateStartupEventSO.cs" />
+    <Compile Include="SystemOperations\Create\CreateUserSO.cs" />
     <Compile Include="SystemOperations\Delete\DeleteStartupEventSO.cs" />
     <Compile Include="SystemOperations\Find\FindEventRegistrationsSO.cs" />
     <Compile Include="SystemOperations\Find\FindStartupEventsSO.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="SystemOperations\Save\SaveStartupEventSO.cs" />
     <Compile Include="SystemOperations\Find\FindFundingProgramsSO.cs" />
     <Compile Include="SystemOperations\Load\LoadFundingProgramSO.cs" />
-    <Compile Include="SystemOperations\Login\RegisterUserSO.cs" />
+    <Compile Include="SystemOperations\Login\LoginUserSO.cs" />
     <Compile Include="SystemOperations\Save\SaveFundingProgramSO.cs" />
     <Compile Include="SystemOperations\Save\SaveUserSO.cs" />
     <Compile Include="SystemOperations\SystemOperationBase.cs" />

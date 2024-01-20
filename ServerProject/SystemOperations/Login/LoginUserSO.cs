@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServerProject.SystemOperations
 {
-    internal class RegisterUserSO : SystemOperationBase
+    internal class LoginUserSO : SystemOperationBase
     {
         protected override void ExecuteConcreteOperation()
         {

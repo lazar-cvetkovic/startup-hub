@@ -24,6 +24,6 @@ namespace Common.Communication
         SaveFunding = 13,
         SaveRegistration = 14,
         SaveUser = 15,
-        Register = 16
+        CreateUser = 16
     }
 }

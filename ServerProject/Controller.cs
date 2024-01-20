@@ -1,6 +1,7 @@
 ﻿using Common.Domain;
 using DatabaseBroker;
 using ServerProject.SystemOperations;
+using ServerProject.SystemOperations.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,13 @@ namespace ServerProject
             var systemOperation = new CreateStartupEventSO(argument);
             systemOperation.ExecuteTemplate();
         }
+
+        internal void CreateUser(User argument)
+        {
+            var systemOperation = new CreateUserSO(argument);
+            systemOperation.ExecuteTemplate();
+        }
+
         #endregion
 
         #region SELECT Operations

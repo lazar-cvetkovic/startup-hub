@@ -69,6 +69,10 @@ namespace ServerProject
                     Controller.Instance.CreateEventRegistration((StartupEventRegistration)request.Argument);
                     return null;
 
+                case Operation.CreateUser:
+                    Controller.Instance.CreateUser((User)request.Argument);
+                    return null;
+
                 case Operation.DeleteEvent:
                     Controller.Instance.DeleteStartupEvent((StartupEvent)request.Argument);
                     return null;
@@ -79,22 +83,17 @@ namespace ServerProject
                 case Operation.FindFundings:
                     return Controller.Instance.FindFundingPrograms();
 
-
                 case Operation.FindRegistrations:
                     return Controller.Instance.FindEventRegistrations();
-
 
                 case Operation.LoadEvent:
                     return Controller.Instance.LoadStartupEvent((Dictionary<string, int>)request.Argument);
 
-
                 case Operation.LoadFunding:
                     return Controller.Instance.LoadFundingProgram((Dictionary<string, int>)request.Argument);
 
-
                 case Operation.LoadRegistration:
                     return Controller.Instance.LoadEventRegistration((Dictionary<string, int>)request.Argument);
-
 
                 case Operation.LoadEventsCollection:
                     return Controller.Instance.LoadStartupEventsCollection();
@@ -113,9 +112,6 @@ namespace ServerProject
 
                 case Operation.SaveUser:
                     Controller.Instance.SaveUser((User)request.Argument);
-                    return null;
-
-                case Operation.Register:
                     return null;
 
                 default:
