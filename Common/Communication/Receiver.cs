@@ -26,3 +26,4 @@ namespace Common.Communication
             return _formatter.Deserialize(_stream);
         }
     }
+}

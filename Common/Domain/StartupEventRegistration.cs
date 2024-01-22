@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Common.Domain
 {
+    [Serializable]
     public class StartupEventRegistration : IEntity
     {
         public int UserId { get; set; }

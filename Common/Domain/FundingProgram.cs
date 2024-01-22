@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common.Domain
 {
+    [Serializable]
     public class FundingProgram : IEntity
     {
         public int Id { get; set; }
