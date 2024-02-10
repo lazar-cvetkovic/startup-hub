@@ -1,5 +1,6 @@
 ﻿using ClientProject.Forms;
 using Common.Helpers;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,9 +24,9 @@ namespace ClientProject.GUIControllers
             }
         }
 
-        private Button _currentButton;
-        private Color _selectedButtonColor = Color.FromArgb(97, 20, 203);
-        private Color _defaultButtonColor = Color.FromArgb(142, 79, 216);
+        private IconButton _currentButton;
+        private Color _selectedButtonColor = Color.FromArgb(37, 36, 81);
+        private Color _defaultButtonColor = Color.FromArgb(31, 30, 68);
 
         public FrmLogin LoginForm { get; set; }
         public FrmRegistration RegistrationForm { get; set; }
@@ -47,7 +48,7 @@ namespace ClientProject.GUIControllers
             _userController = new UserGUIController();
         }
 
-        public void Initialize(Label titleLabel, Button homeButton, Panel mainPanel)
+        internal void Initialize(Label titleLabel, Button homeButton, Panel mainPanel)
         {
             _titleLabel = titleLabel;
             _mainPanel = mainPanel;
@@ -56,18 +57,22 @@ namespace ClientProject.GUIControllers
 
         private void ActivateButton(object buttonSender)
         {
-            if (buttonSender == null || _currentButton == (Button)buttonSender) return;
+            if (buttonSender == null || _currentButton == (IconButton)buttonSender) return;
 
             if(_currentButton != null)
+            {
                 _currentButton.BackColor = _defaultButtonColor;
+                _currentButton.IconColor = Color.Gainsboro;
+            }
 
-            _currentButton = (Button)buttonSender;
+            _currentButton = (IconButton)buttonSender;
             _currentButton.BackColor = _selectedButtonColor;
+            _currentButton.IconColor = Color.Aquamarine;
 
-            _titleLabel.Text = _currentButton.Text;
+            _titleLabel.Text = _currentButton.Text.Trim().ToLower();
         }
 
-        public void ChangePanel(Control control)
+        internal void ChangePanel(Control control)
         {
             try
             {
