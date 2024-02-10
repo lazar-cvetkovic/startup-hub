@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientProject.GUIControllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace ClientProject.Forms
         public FrmMain()
         {
             InitializeComponent();
+            InitializeMainCoordinator();
+            AddButtonSubscriptions();
+        }
+
+        private void InitializeMainCoordinator() => MainCoordinator.Instance.Initialize(lblTitle, btnHome, panelMain);
+
+        private void AddButtonSubscriptions()
+        {
+            btnFundingPrograms.Click += MainCoordinator.Instance.ShowFundingProgramsUC;
+            btnHome.Click += MainCoordinator.Instance.ShowHomeUC;
+            btnStartupEvents.Click += MainCoordinator.Instance.ShowStartupEventsUC;
         }
     }
 }
