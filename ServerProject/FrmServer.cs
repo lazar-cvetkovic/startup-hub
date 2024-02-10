@@ -15,6 +15,7 @@ namespace ServerProject
     public partial class FrmServer : Form
     {
         private BindingList<ClientHandler> _clients = new BindingList<ClientHandler>();
+        private Server _server;
 
         public FrmServer()
         {
@@ -24,6 +25,8 @@ namespace ServerProject
 
         private void InitializeServer()
         {
+            _server = new Server();
+
             try
             {
                 StartServer();
@@ -39,11 +42,15 @@ namespace ServerProject
 
         private void StartServer()
         {
-            Server.Instance.Start();
+            _server.Start();
             HandleServerUI(true);
         }
 
-        private void StopServerButtonClick(object sender, EventArgs e) => HandleServerUI(false);
+        private void StopServerButtonClick(object sender, EventArgs e)
+        {
+            _server.Stop();
+            HandleServerUI(false);
+        }
 
         private void HandleServerUI(bool isServerStarted)
         {

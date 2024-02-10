@@ -118,5 +118,7 @@ namespace ServerProject
                     return null;
             }
         }
+
+        public void StopClientSocket() => _socket.Close();
     }
 }

@@ -8,40 +8,31 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Configuration;
+using Common.Helpers;
 
 namespace ServerProject
 {
     public class Server
     {
-        private static Server _instance = null;
-        private static readonly object _lock = new object();
+        private List<ClientHandler> _clientHandlers;
+        private Socket _socket;
+        private bool _isServerRunning;
 
-        public static Server Instance
+        public Server()
         {
-            get
-            {
-                lock (_lock)
-                {
-                    _instance = _instance ?? new Server();
-                    return _instance;
-                }
-            }
-        }
-
-        Socket _socket;
-
-        private Server()
-        {
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _clientHandlers = new List<ClientHandler>();
         }
 
         public void Start()
         {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
             var endPoint = new IPEndPoint(IPAddress.Parse(ConfigurationManager.AppSettings["ip"]), 
                                           int.Parse(ConfigurationManager.AppSettings["port"]));
 
             _socket.Bind(endPoint);
             _socket.Listen(5);
+            _isServerRunning = true;
 
             var thread = new Thread(AcceptClient);
             thread.Start();
@@ -51,10 +42,11 @@ namespace ServerProject
         {
             try
             {
-                while (true)
+                while (_isServerRunning)
                 {
                     var clientSocket = _socket.Accept();
                     var handler = new ClientHandler(clientSocket);
+                    _clientHandlers.Add(handler);
 
                     var clientThread = new Thread(handler.HandleRequest);
                     clientThread.Start();
@@ -66,12 +58,21 @@ namespace ServerProject
             }
         }
 
-
         public void Stop()
         {
-            _socket.Close();
-        }
+            try
+            {
+                _socket.Close();
+                _isServerRunning = false;
 
+                _clientHandlers.ForEach(c => c.StopClientSocket());
+                _clientHandlers.Clear();
+            }
+            catch (Exception e)
+            {
+                HelperMethods.ShowErrorMessage(e.Message);
+            }
+        }
     }
 
 }
