@@ -13,16 +13,32 @@ namespace ServerProject
 {
     public class Server
     {
+        private static Server _instance = null;
+        private static readonly object _lock = new object();
+
+        public static Server Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    _instance = _instance ?? new Server();
+                    return _instance;
+                }
+            }
+        }
+
         Socket _socket;
 
-        public Server()
+        private Server()
         {
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
 
         public void Start()
         {
-            var endPoint = new IPEndPoint(IPAddress.Parse(ConfigurationManager.AppSettings["ip"]), int.Parse(ConfigurationManager.AppSettings["port"]));
+            var endPoint = new IPEndPoint(IPAddress.Parse(ConfigurationManager.AppSettings["ip"]), 
+                                          int.Parse(ConfigurationManager.AppSettings["port"]));
 
             _socket.Bind(endPoint);
             _socket.Listen(5);
