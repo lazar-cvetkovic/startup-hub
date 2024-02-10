@@ -1,4 +1,5 @@
 ﻿using ClientProject.Forms;
+using ClientProject.UserControls;
 using Common.Helpers;
 using FontAwesome.Sharp;
 using System;
@@ -40,6 +41,8 @@ namespace ClientProject.GUIControllers
         private Label _titleLabel;
         private Panel _mainPanel;
 
+        private bool _isAdministrator;
+
         private MainCoordinator()
         {
             _registrationController = new EventRegistrationGUIController();
@@ -53,6 +56,7 @@ namespace ClientProject.GUIControllers
             _titleLabel = titleLabel;
             _mainPanel = mainPanel;
             ActivateButton(homeButton);
+            ChangePanel(new HomeUC());
         }
 
         private void ActivateButton(object buttonSender)
@@ -86,19 +90,22 @@ namespace ClientProject.GUIControllers
             }
         }
 
-        internal void ShowFundingProgramsUC(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-        }
-
         internal void ShowHomeUC(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            ChangePanel(new HomeUC());
         }
 
         internal void ShowStartupEventsUC(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            ChangePanel(_startupEventController.CreateStartupEventsUC());
+        }
+
+        internal void ShowFundingProgramsUC(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            ChangePanel(_fundingController.CreateFundingProgramsUC());
         }
     }
 }

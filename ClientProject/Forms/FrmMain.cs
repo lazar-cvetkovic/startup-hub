@@ -35,6 +35,7 @@ namespace ClientProject.Forms
             btnStartupEvents.Click += MainCoordinator.Instance.ShowStartupEventsUC;
         }
 
+        #region Custom Windows Buttons
         private void ExitButtonClick(object sender, EventArgs e) => Application.Exit();
 
         private void MaximizeButtonClick(object sender, EventArgs e)
@@ -44,6 +45,7 @@ namespace ClientProject.Forms
         }
 
         private void MinimizeButtonClick(object sender, EventArgs e) => WindowState = FormWindowState.Minimized;
+        #endregion
 
         #region Form Dragging Logic
         private void OnMouseClickStart(object sender, MouseEventArgs e)

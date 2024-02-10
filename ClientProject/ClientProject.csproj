@@ -79,6 +79,24 @@
     <Compile Include="GUIControllers\UserGUIController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\FundingProgramsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FundingProgramsUC.Designer.cs">
+      <DependentUpon>FundingProgramsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HomeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\HomeUC.Designer.cs">
+      <DependentUpon>HomeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StartupEventsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\StartupEventsUC.Designer.cs">
+      <DependentUpon>StartupEventsUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +110,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FundingProgramsUC.resx">
+      <DependentUpon>FundingProgramsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\HomeUC.resx">
+      <DependentUpon>HomeUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\StartupEventsUC.resx">
+      <DependentUpon>StartupEventsUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -129,8 +156,6 @@
     <None Include="Resources\StartupEventsPng.png" />
     <None Include="Resources\StartupEventIcon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
