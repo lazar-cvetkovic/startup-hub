@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace ClientProject.UserControls
 {
-    public partial class StartupEventsUC : UserControl
+    public partial class SpecificEventUC : UserControl
     {
-        public StartupEventsUC()
+        public SpecificEventUC()
         {
             InitializeComponent();
         }
-
-        internal FlowLayoutPanel FlowPanel => flowPanel;
     }
 }

@@ -30,7 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,20 +56,22 @@
             this.panel1.Size = new System.Drawing.Size(1204, 66);
             this.panel1.TabIndex = 3;
             // 
-            // panel2
+            // flowPanel
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 66);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1204, 660);
-            this.panel2.TabIndex = 4;
+            this.flowPanel.AutoScroll = true;
+            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowPanel.Location = new System.Drawing.Point(0, 66);
+            this.flowPanel.Name = "flowPanel";
+            this.flowPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.flowPanel.Size = new System.Drawing.Size(1204, 660);
+            this.flowPanel.TabIndex = 4;
             // 
             // StartupEventsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.flowPanel);
             this.Controls.Add(this.panel1);
             this.Name = "StartupEventsUC";
             this.Size = new System.Drawing.Size(1204, 726);
@@ -82,6 +84,6 @@
 
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flowPanel;
     }
 }

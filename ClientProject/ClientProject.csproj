@@ -79,6 +79,12 @@
     <Compile Include="GUIControllers\UserGUIController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\EventPreviewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\EventPreviewUC.Designer.cs">
+      <DependentUpon>EventPreviewUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\FundingProgramsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +96,12 @@
     </Compile>
     <Compile Include="UserControls\HomeUC.Designer.cs">
       <DependentUpon>HomeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SpecificEventUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SpecificEventUC.Designer.cs">
+      <DependentUpon>SpecificEventUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StartupEventsUC.cs">
       <SubType>UserControl</SubType>
@@ -110,6 +122,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\EventPreviewUC.resx">
+      <DependentUpon>EventPreviewUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FundingProgramsUC.resx">
       <DependentUpon>FundingProgramsUC.cs</DependentUpon>

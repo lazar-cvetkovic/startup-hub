@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace ClientProject.UserControls
 {
-    public partial class StartupEventsUC : UserControl
+    public partial class EventPreviewUC : UserControl
     {
-        public StartupEventsUC()
+        public EventPreviewUC(int id, string eventName, DateTime dateTime)
         {
             InitializeComponent();
+
+            lblEventName.Text = eventName;
+            lblDate.Text = dateTime.ToString("f");
+            btnReadMore.Tag = id;
         }
 
-        internal FlowLayoutPanel FlowPanel => flowPanel;
+        public Button GetReadMoreButton() => btnReadMore;
     }
 }
