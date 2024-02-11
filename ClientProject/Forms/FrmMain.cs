@@ -26,7 +26,7 @@ namespace ClientProject.Forms
             AddButtonSubscriptions();
         }
 
-        private void InitializeMainCoordinator() => MainCoordinator.Instance.Initialize(lblTitle, btnHome, panelMain);
+        private void InitializeMainCoordinator() => MainCoordinator.Instance.InitializeMainForm(lblTitle, btnHome, panelMain);
 
         private void AddButtonSubscriptions()
         {

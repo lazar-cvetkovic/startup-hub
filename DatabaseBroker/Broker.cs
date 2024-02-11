@@ -84,7 +84,7 @@ namespace DatabaseBroker
         {
             using (var command = _connection.CreateCommand())
             {
-                var whereClauses = ids.Select(id => $"{id.Key} = @{id.Key}").ToList();
+                var whereClauses = ids.Select(id => $"{entity.TableName}.{id.Key} = @{id.Key}").ToList();
                 command.CommandText = $"SELECT * FROM {entity.TableName} WHERE {string.Join(" AND ", whereClauses)}";
 
                 foreach (var id in ids)

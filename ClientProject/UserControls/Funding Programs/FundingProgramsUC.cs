@@ -16,5 +16,7 @@ namespace ClientProject.UserControls
         {
             InitializeComponent();
         }
+
+        internal FlowLayoutPanel FlowPanel => flowPanel;
     }
 }

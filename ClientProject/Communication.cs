@@ -21,32 +21,68 @@ namespace ClientProject
             }
         }
 
+        private const string ServerDownMessage = "Connection failed. Server is down at the moment.";
+
         private Socket _socket;
         private Sender _sender;
         private Receiver _receiver;
+        private bool _isConnectedToServer;
+
+        public bool IsConnectedToServer => _isConnectedToServer;
 
         private Communication() { }
 
-        internal void Connect()
+        internal (bool isSuccessful, string errorMessage) Connect()
         {
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _socket.Connect("127.0.0.1", 9999);
+            try
+            {
+                _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _socket.Connect("127.0.0.1", 9999);
 
-            _sender = new Sender(_socket);
-            _receiver = new Receiver(_socket);
+                _sender = new Sender(_socket);
+                _receiver = new Receiver(_socket);
+
+                _isConnectedToServer = true;
+                return (true, null);
+            }
+            catch (Exception)
+            {
+                _isConnectedToServer = false;
+                return (false, ServerDownMessage);
+            }
         }
 
         internal Response SendServerRequest(object argument, Operation operation)
         {
-            var request = new Request
+            try
             {
-                Argument = argument,
-                Operation = operation
-            };
+                if (!_isConnectedToServer)
+                {
+                    var connectionResponse = Connect();
+                    if (!connectionResponse.isSuccessful)
+                    {
+                        return new Response { Exception = new Exception(ServerDownMessage) };
+                    }
 
-            _sender.Send(request);
-            return (Response)_receiver.Receive();
+                    _isConnectedToServer = true;
+                }
+
+                var request = new Request
+                {
+                    Argument = argument,
+                    Operation = operation
+                };
+
+                _sender.Send(request);
+                return (Response)_receiver.Receive();
+            }
+            catch (Exception)
+            {
+                return new Response { Exception = new Exception(ServerDownMessage) };
+            }
         }
+
+        internal Response Login(User argument) => SendServerRequest(argument, Operation.Login);
 
         internal Response CreateEventRegistration(StartupEventRegistration argument) => SendServerRequest(argument, Operation.CreateRegistration);
         internal Response CreateFundingProgram(FundingProgram argument) => SendServerRequest(argument, Operation.CreateFunding);

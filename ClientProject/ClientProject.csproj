@@ -79,16 +79,22 @@
     <Compile Include="GUIControllers\UserGUIController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\EventPreviewUC.cs">
+    <Compile Include="UserControls\Funding Programs\FundingProgramPreviewUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\EventPreviewUC.Designer.cs">
+    <Compile Include="UserControls\Funding Programs\FundingProgramPreviewUC.Designer.cs">
+      <DependentUpon>FundingProgramPreviewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Startup Events\EventPreviewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Events\EventPreviewUC.Designer.cs">
       <DependentUpon>EventPreviewUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\FundingProgramsUC.cs">
+    <Compile Include="UserControls\Funding Programs\FundingProgramsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\FundingProgramsUC.Designer.cs">
+    <Compile Include="UserControls\Funding Programs\FundingProgramsUC.Designer.cs">
       <DependentUpon>FundingProgramsUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\HomeUC.cs">
@@ -97,16 +103,22 @@
     <Compile Include="UserControls\HomeUC.Designer.cs">
       <DependentUpon>HomeUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SpecificEventUC.cs">
+    <Compile Include="UserControls\Startup Events\SpecificEventUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\SpecificEventUC.Designer.cs">
+    <Compile Include="UserControls\Startup Events\SpecificEventUC.Designer.cs">
       <DependentUpon>SpecificEventUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\StartupEventsUC.cs">
+    <Compile Include="UserControls\Funding Programs\SpecificFundingProgramUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\StartupEventsUC.Designer.cs">
+    <Compile Include="UserControls\Funding Programs\SpecificFundingProgramUC.Designer.cs">
+      <DependentUpon>SpecificFundingProgramUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Startup Events\StartupEventsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Events\StartupEventsUC.Designer.cs">
       <DependentUpon>StartupEventsUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
@@ -123,16 +135,25 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\EventPreviewUC.resx">
+    <EmbeddedResource Include="UserControls\Funding Programs\FundingProgramPreviewUC.resx">
+      <DependentUpon>FundingProgramPreviewUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Funding Programs\SpecificFundingProgramUC.resx">
+      <DependentUpon>SpecificFundingProgramUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Events\EventPreviewUC.resx">
       <DependentUpon>EventPreviewUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\FundingProgramsUC.resx">
+    <EmbeddedResource Include="UserControls\Funding Programs\FundingProgramsUC.resx">
       <DependentUpon>FundingProgramsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\HomeUC.resx">
       <DependentUpon>HomeUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\StartupEventsUC.resx">
+    <EmbeddedResource Include="UserControls\Startup Events\SpecificEventUC.resx">
+      <DependentUpon>SpecificEventUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Events\StartupEventsUC.resx">
       <DependentUpon>StartupEventsUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

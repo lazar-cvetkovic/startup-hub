@@ -15,7 +15,7 @@ namespace Common.Domain
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Deadline { get; set; }
-        public int FundingAmount { get; set; }
+        public string FundingAmount { get; set; }
         public int UserId { get; set; }
 
         #region SQL Properties and Methods
@@ -39,7 +39,7 @@ namespace Common.Domain
                     Name = reader["Name"].ToString(),
                     Description = reader["Description"].ToString(),
                     Deadline = (DateTime)reader["Deadline"],
-                    FundingAmount = (int)reader["FundingAmount"],
+                    FundingAmount = (string)reader["FundingAmount"],
                     UserId = (int)reader["UserId"]
                 };
                 programs.Add(program);
@@ -65,7 +65,7 @@ namespace Common.Domain
                 Name = reader["Name"].ToString(),
                 Description = reader["Description"].ToString(),
                 Deadline = (DateTime)reader["Deadline"],
-                FundingAmount = (int)reader["FundingAmount"],
+                FundingAmount = (string)reader["FundingAmount"],
                 UserId = (int)reader["UserId"]
             };
         }

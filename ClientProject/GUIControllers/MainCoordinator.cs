@@ -40,6 +40,7 @@ namespace ClientProject.GUIControllers
 
         private Label _titleLabel;
         private Panel _mainPanel;
+        private Form _currentForm;
 
         private bool _isAdministrator;
 
@@ -51,7 +52,7 @@ namespace ClientProject.GUIControllers
             _userController = new UserGUIController();
         }
 
-        internal void Initialize(Label titleLabel, Button homeButton, Panel mainPanel)
+        internal void InitializeMainForm(Label titleLabel, Button homeButton, Panel mainPanel)
         {
             _titleLabel = titleLabel;
             _mainPanel = mainPanel;
@@ -89,6 +90,24 @@ namespace ClientProject.GUIControllers
                 ShowErrorMessage(ex.Message);
             }
         }
+
+        private void ChangeForms(Form newForm)
+        {
+            if (newForm == null || _currentForm == newForm)
+            {
+                return;
+            }
+
+            newForm.Show();
+            _currentForm.Close();
+            _currentForm = newForm;
+        }
+
+        internal void ShowLoginForm() => ChangeForms(new FrmLogin());
+
+        internal void ShowRegisterForm() => ChangeForms(new FrmRegistration());
+
+        internal void ShowMainForm() => ChangeForms(new FrmMain());
 
         internal void ShowHomeUC(object sender, EventArgs e)
         {

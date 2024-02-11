@@ -12,16 +12,17 @@ namespace Common.Domain
     public class User : IEntity
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
 
         #region SQL Properties and Methods
 
         public string TableName => "User";
 
-        public string Values => "@FirstName, @LastName";
+        public string Values => "@Email, @Name, @Password";
 
-        public string UpdateValues => "FirstName = @FirstName, LastName = @LastName";
+        public string UpdateValues => "Email = @Email, Name = @Name, Password = @Password";
 
         public string PrimaryKey => "Id = @Id";
 
@@ -33,8 +34,9 @@ namespace Common.Domain
                 var user = new User
                 {
                     Id = (int)reader["Id"],
-                    FirstName = reader["FirstName"].ToString(),
-                    LastName = reader["LastName"].ToString()
+                    Email = reader["Email"].ToString(),
+                    Name = reader["Name"].ToString(),
+                    Password = reader["Password"].ToString()
                 };
                 users.Add(user);
             }
@@ -44,8 +46,9 @@ namespace Common.Domain
         public void AddSqlParameters(SqlCommand command)
         {
             command.Parameters.AddWithValue("@Id", Id);
-            command.Parameters.AddWithValue("@FirstName", FirstName);
-            command.Parameters.AddWithValue("@LastName", LastName);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@Name", Name);
+            command.Parameters.AddWithValue("@Password", Password);
         }
 
         public IEntity CreateEntity(SqlDataReader reader)
@@ -53,8 +56,9 @@ namespace Common.Domain
             return new User
             {
                 Id = (int)reader["Id"],
-                FirstName = reader["FirstName"].ToString(),
-                LastName = reader["LastName"].ToString()
+                Email = reader["Email"].ToString(),
+                Name = reader["Name"].ToString(),
+                Password = reader["Password"].ToString()
             };
         }
 
