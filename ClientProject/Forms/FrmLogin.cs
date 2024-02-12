@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientProject.GUIControllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +18,14 @@ namespace ClientProject
 
         public string Email => txtEmail.Text;
         public string Password => txtPassword.Text;
+        public Button LoginButton => btnLogin;
+        public Button ShowRegisterFormButton => btnRegister;
 
         public FrmLogin()
         {
             InitializeComponent();
             InitializeEvents();
+            MainCoordinator.Instance.InitializeLoginForm(this);
         }
 
         #region Helper Text Logic

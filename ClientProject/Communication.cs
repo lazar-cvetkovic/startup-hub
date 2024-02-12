@@ -2,7 +2,9 @@
 using Common.Domain;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +39,8 @@ namespace ClientProject
             try
             {
                 _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                _socket.Connect("127.0.0.1", 9999);
+                _socket.Connect(IPAddress.Parse(ConfigurationManager.AppSettings["ip"]),
+                                int.Parse(ConfigurationManager.AppSettings["port"]));
 
                 _sender = new Sender(_socket);
                 _receiver = new Receiver(_socket);

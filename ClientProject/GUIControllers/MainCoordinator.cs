@@ -60,6 +60,18 @@ namespace ClientProject.GUIControllers
             ChangePanel(new HomeUC());
         }
 
+        internal void InitializeLoginForm(FrmLogin loginForm)
+        {
+            loginForm.ShowRegisterFormButton.Click += ShowRegisterForm;
+            _userController.InitializeLoginForm(loginForm);
+        }
+
+        internal void InitializeRegistrationForm(FrmRegistration registrationForm)
+        {
+            registrationForm.ShowLoginFormButton.Click += ShowLoginForm;
+            _userController.InitializeRegistrationForm(registrationForm);
+        }
+
         private void ActivateButton(object buttonSender)
         {
             if (buttonSender == null || _currentButton == (IconButton)buttonSender) return;
@@ -99,14 +111,17 @@ namespace ClientProject.GUIControllers
             }
 
             newForm.Show();
-            _currentForm.Close();
+            _currentForm?.Close();
             _currentForm = newForm;
         }
 
+        internal void ShowLoginForm(object sender, EventArgs e) => ShowLoginForm();
         internal void ShowLoginForm() => ChangeForms(new FrmLogin());
 
+        internal void ShowRegisterForm(object sender, EventArgs e) => ShowRegisterForm();
         internal void ShowRegisterForm() => ChangeForms(new FrmRegistration());
 
+        internal void ShowMainForm(object sender, EventArgs e) => ShowMainForm();
         internal void ShowMainForm() => ChangeForms(new FrmMain());
 
         internal void ShowHomeUC(object sender, EventArgs e)
