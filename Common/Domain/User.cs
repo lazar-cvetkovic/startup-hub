@@ -1,4 +1,5 @@
-﻿using Common.Interfaces;
+﻿using Common.Enums;
+using Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,14 +16,15 @@ namespace Common.Domain
         public string Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
+        public UserRole Role { get; set; }
 
         #region SQL Properties and Methods
 
         public string TableName => "User";
 
-        public string Values => "@Email, @Name, @Password";
+        public string Values => "@Email, @Name, @Password, @Role";
 
-        public string UpdateValues => "Email = @Email, Name = @Name, Password = @Password";
+        public string UpdateValues => "Email = @Email, Name = @Name, Password = @Password, Role = @Role";
 
         public string PrimaryKey => "Id = @Id";
 
@@ -36,7 +38,8 @@ namespace Common.Domain
                     Id = (int)reader["Id"],
                     Email = reader["Email"].ToString(),
                     Name = reader["Name"].ToString(),
-                    Password = reader["Password"].ToString()
+                    Password = reader["Password"].ToString(),
+                    Role = (UserRole)Enum.Parse(typeof(UserRole), reader["Role"].ToString())
                 };
                 users.Add(user);
             }
@@ -49,6 +52,7 @@ namespace Common.Domain
             command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@Role", Role);
         }
 
         public IEntity CreateEntity(SqlDataReader reader)
@@ -58,7 +62,8 @@ namespace Common.Domain
                 Id = (int)reader["Id"],
                 Email = reader["Email"].ToString(),
                 Name = reader["Name"].ToString(),
-                Password = reader["Password"].ToString()
+                Password = reader["Password"].ToString(),
+                Role = (UserRole)Enum.Parse(typeof(UserRole), reader["Role"].ToString())
             };
         }
 

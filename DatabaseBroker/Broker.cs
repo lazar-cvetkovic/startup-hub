@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Domain;
+using Common.Helpers;
 using Common.Interfaces;
 
 namespace DatabaseBroker
@@ -95,6 +96,27 @@ namespace DatabaseBroker
                 using (var reader = command.ExecuteReader())
                 {
                     return reader.Read() ? entity.CreateEntity(reader) : null;
+                }
+            }
+        }
+
+        public User FindUserByEmailAndPassword(User prototype, string email, string password)
+        {
+            if(StringExtensions.AreNullOrEmpty(email, password))
+            {
+                return null;
+            }
+
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM [User] WHERE Email=@email AND Password=@password";
+
+                command.Parameters.AddWithValue("@email" , email);
+                command.Parameters.AddWithValue("@password" , password);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    return reader.Read() ? (User)prototype.CreateEntity(reader) : null;
                 }
             }
         }

@@ -31,6 +31,14 @@ namespace ServerProject
 
         private Controller() => _broker = new Broker();
 
+        internal User Login(User argument)
+        {
+            var systemOperation = new LoginUserSO(argument);
+            systemOperation.ExecuteTemplate();
+
+            return systemOperation.Result;
+        }
+
         #region INSERT Operations
         internal void CreateEventRegistration(StartupEventRegistration argument)
         {

@@ -23,7 +23,15 @@ namespace Common.Communication
 
         public object Receive()
         {
-            return _formatter.Deserialize(_stream);
+            try
+            {
+                return _formatter.Deserialize(_stream);
+            }
+            catch
+            {
+                Console.WriteLine("Exception occured in Receiver");
+                return null;
+            }
         }
     }
 }

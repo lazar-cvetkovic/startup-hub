@@ -23,7 +23,14 @@ namespace Common.Communication
 
         public void Send(object argument)
         {
-            _formatter.Serialize(_stream, argument);
+            try
+            {
+                _formatter.Serialize(_stream, argument);
+            }
+            catch
+            {
+                Console.WriteLine("Caught an exception in Sender");
+            }
         }
 
     }

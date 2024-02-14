@@ -39,9 +39,15 @@ namespace ClientProject.GUIControllers
 
             var response = Communication.Instance.Login(user);
 
-            if(response.Exception != null)
+            if (response.Exception != null)
             {
                 HelperMethods.ShowErrorMessage(response.Exception.Message);
+                return;
+            }
+
+            if(response == null || response.Result == null)
+            {
+                HelperMethods.ShowErrorMessage("User with that email and password doesn't exist.");
                 return;
             }
 

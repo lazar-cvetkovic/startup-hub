@@ -52,70 +52,82 @@ namespace ServerProject
 
         private object ExecuteRequest(Request request)
         {
-            switch (request.Operation)
+            try
             {
-                case Operation.Login:
+                if(request == null)
+                {
                     return null;
+                }
 
-                case Operation.CreateEvent:
-                    Controller.Instance.CreateStartupEvent((StartupEvent)request.Argument);
-                    return null;
-                    
-                case Operation.CreateFunding:
-                    Controller.Instance.CreateFundingProgram((FundingProgram)request.Argument);
-                    return null;
+                switch (request.Operation)
+                {
+                    case Operation.Login:
+                        return Controller.Instance.Login((User)request.Argument);
 
-                case Operation.CreateRegistration:
-                    Controller.Instance.CreateEventRegistration((StartupEventRegistration)request.Argument);
-                    return null;
+                    case Operation.CreateEvent:
+                        Controller.Instance.CreateStartupEvent((StartupEvent)request.Argument);
+                        return null;
 
-                case Operation.CreateUser:
-                    Controller.Instance.CreateUser((User)request.Argument);
-                    return null;
+                    case Operation.CreateFunding:
+                        Controller.Instance.CreateFundingProgram((FundingProgram)request.Argument);
+                        return null;
 
-                case Operation.DeleteEvent:
-                    Controller.Instance.DeleteStartupEvent((StartupEvent)request.Argument);
-                    return null;
+                    case Operation.CreateRegistration:
+                        Controller.Instance.CreateEventRegistration((StartupEventRegistration)request.Argument);
+                        return null;
 
-                case Operation.FindEvents:
-                    return Controller.Instance.FindStartupEvents();
+                    case Operation.CreateUser:
+                        Controller.Instance.CreateUser((User)request.Argument);
+                        return null;
 
-                case Operation.FindFundings:
-                    return Controller.Instance.FindFundingPrograms();
+                    case Operation.DeleteEvent:
+                        Controller.Instance.DeleteStartupEvent((StartupEvent)request.Argument);
+                        return null;
 
-                case Operation.FindRegistrations:
-                    return Controller.Instance.FindEventRegistrations();
+                    case Operation.FindEvents:
+                        return Controller.Instance.FindStartupEvents();
 
-                case Operation.LoadEvent:
-                    return Controller.Instance.LoadStartupEvent((Dictionary<string, int>)request.Argument);
+                    case Operation.FindFundings:
+                        return Controller.Instance.FindFundingPrograms();
 
-                case Operation.LoadFunding:
-                    return Controller.Instance.LoadFundingProgram((Dictionary<string, int>)request.Argument);
+                    case Operation.FindRegistrations:
+                        return Controller.Instance.FindEventRegistrations();
 
-                case Operation.LoadRegistration:
-                    return Controller.Instance.LoadEventRegistration((Dictionary<string, int>)request.Argument);
+                    case Operation.LoadEvent:
+                        return Controller.Instance.LoadStartupEvent((Dictionary<string, int>)request.Argument);
 
-                case Operation.LoadEventsCollection:
-                    return Controller.Instance.LoadStartupEventsCollection();
+                    case Operation.LoadFunding:
+                        return Controller.Instance.LoadFundingProgram((Dictionary<string, int>)request.Argument);
 
-                case Operation.SaveEvent:
-                    Controller.Instance.SaveStartupEvent((StartupEvent)request.Argument);
-                    return null;
+                    case Operation.LoadRegistration:
+                        return Controller.Instance.LoadEventRegistration((Dictionary<string, int>)request.Argument);
 
-                case Operation.SaveFunding:
-                    Controller.Instance.SaveFundingProgram((FundingProgram)request.Argument);
-                    return null;
+                    case Operation.LoadEventsCollection:
+                        return Controller.Instance.LoadStartupEventsCollection();
 
-                case Operation.SaveRegistration:
-                    Controller.Instance.SaveEventRegistration((StartupEventRegistration)request.Argument);
-                    return null;
+                    case Operation.SaveEvent:
+                        Controller.Instance.SaveStartupEvent((StartupEvent)request.Argument);
+                        return null;
 
-                case Operation.SaveUser:
-                    Controller.Instance.SaveUser((User)request.Argument);
-                    return null;
+                    case Operation.SaveFunding:
+                        Controller.Instance.SaveFundingProgram((FundingProgram)request.Argument);
+                        return null;
 
-                default:
-                    return null;
+                    case Operation.SaveRegistration:
+                        Controller.Instance.SaveEventRegistration((StartupEventRegistration)request.Argument);
+                        return null;
+
+                    case Operation.SaveUser:
+                        Controller.Instance.SaveUser((User)request.Argument);
+                        return null;
+
+                    default:
+                        return null;
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
 

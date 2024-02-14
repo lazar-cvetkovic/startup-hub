@@ -53,6 +53,7 @@
     <Compile Include="Domain\StartupEventRegistration.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Enums\RegistrationStatus.cs" />
+    <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Helpers\HelperMethods.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
