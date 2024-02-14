@@ -30,7 +30,7 @@ namespace Common.Communication
             catch
             {
                 Console.WriteLine("Exception occured in Receiver");
-                return null;
+                throw;
             }
         }
     }

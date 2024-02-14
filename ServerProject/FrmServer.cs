@@ -38,17 +38,23 @@ namespace ServerProject
             }
         }
 
+        internal void AddClientToTable(ClientHandler clientHandler) => this.Invoke(new Action(() => _clients.Add(clientHandler)));
+
+        internal void RemoveClientInTable(ClientHandler clientHandler) => this.Invoke(new Action(() => _clients.Remove(clientHandler)));
+
         private void StartServerButtonClick(object sender, EventArgs e) => StartServer();
 
         private void StartServer()
         {
-            _server.Start();
+            _server.Start(this);
+            _clients.Clear();
             HandleServerUI(true);
         }
 
         private void StopServerButtonClick(object sender, EventArgs e)
         {
             _server.Stop();
+            _clients.Clear();
             HandleServerUI(false);
         }
 

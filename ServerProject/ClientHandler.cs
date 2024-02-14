@@ -12,24 +12,41 @@ namespace ServerProject
 {
     internal class ClientHandler
     {
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
+
         private Sender _sender;
         private Receiver _receiver;
         private Socket _socket;
+        private Server _server;
 
-        public ClientHandler(Socket socket)
+        public ClientHandler(Socket socket, Server server)
         {
             _socket = socket;
             _sender = new Sender(socket);
             _receiver = new Receiver(socket);
+            _server = server;
+            Name = "Pending client";
+            Email = "/";
         }
 
         public void HandleRequest()
         {
             while (true)
             {
-                var request = (Request)_receiver.Receive();
-                Response response = ProcessRequest(request);
-                _sender.Send(response);
+                try
+                {
+                    var request = (Request)_receiver.Receive();
+                    Response response = ProcessRequest(request);
+                    _sender.Send(response);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    _server?.RemoveClient(this);
+                    break;
+                }
             }
         }
 
@@ -54,7 +71,7 @@ namespace ServerProject
         {
             try
             {
-                if(request == null)
+                if (request == null)
                 {
                     return null;
                 }
@@ -62,7 +79,7 @@ namespace ServerProject
                 switch (request.Operation)
                 {
                     case Operation.Login:
-                        return Controller.Instance.Login((User)request.Argument);
+                        return HandleLogin(request);
 
                     case Operation.CreateEvent:
                         Controller.Instance.CreateStartupEvent((StartupEvent)request.Argument);
@@ -129,6 +146,24 @@ namespace ServerProject
             {
                 throw;
             }
+        }
+
+        private User HandleLogin(Request request)
+        {
+            var user = Controller.Instance.Login((User)request.Argument);
+
+            if (user != null && _server.IsClientAlreadyLoggedIn(user.Id))
+            {
+                throw new Exception("User is already logged in.");
+            }
+            else if(user != null)
+            {
+                Id = user.Id;
+                Name = user.Name;
+                Email = user.Email;
+            }
+
+            return user;
         }
 
         public void StopClientSocket() => _socket.Close();
