@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,18 @@ namespace ClientProject.UserControls
 {
     public partial class SpecificEventUC : UserControl
     {
-        public SpecificEventUC()
+        public SpecificEventUC(StartupEvent startupEvent)
         {
             InitializeComponent();
+            InitializeUI(startupEvent);
+        }
+
+        private void InitializeUI(StartupEvent startupEvent)
+        {
+            lblDate.Text = startupEvent.Date.ToString("f");
+            lblDescription.Text = startupEvent.Description;
+            lblEventName.Text = startupEvent.Name;
+            lblPlace.Text = startupEvent.Location;
         }
     }
 }

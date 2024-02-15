@@ -13,7 +13,8 @@ namespace ClientProject.GUIControllers
 {
     internal class FundingProgramGUIController
     {
-        FlowLayoutPanel _flowPanel;
+        private List<FundingProgram> _fundingProgramsList;
+        private FlowLayoutPanel _flowPanel;
 
         public FundingProgramsUC CreateFundingProgramsUC()
         {
@@ -29,25 +30,29 @@ namespace ClientProject.GUIControllers
 
         private void FillEvents()
         {
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
-            AddFundingProgramPreview(1, "Mini grant", DateTime.Now, "$120,000");
+            var serverResponse = Communication.Instance.FindFundingPrograms();
+
+            if (serverResponse != null && serverResponse.Exception != null)
+            {
+                HelperMethods.ShowErrorMessage(serverResponse.Exception.Message);
+                return;
+            }
+
+            if (serverResponse == null || serverResponse.Result == null)
+            {
+                return;
+            }
+
+            _fundingProgramsList = serverResponse.Result as List<FundingProgram>;
+            _fundingProgramsList.ForEach(p => AddFundingProgramPreview(p));
         }
 
-        internal SpecificFundingProgramUC CreateSpecificFundingProgramUC(string programName, DateTime dateTime, string fundingAmount, string description)
-        {
-            return new SpecificFundingProgramUC(programName, dateTime, fundingAmount, description);
-        }
+        internal SpecificFundingProgramUC CreateSpecificFundingProgramUC(FundingProgram program) => new SpecificFundingProgramUC(program);
 
-        internal void AddFundingProgramPreview(int id, string programName, DateTime dateTime, string fundingAmount)
+        internal void AddFundingProgramPreview(FundingProgram fundingProgram)
         {
-            var eventPreviewUC = new FundingProgramPreviewUC(id, programName, dateTime, fundingAmount);
-            Button readMoreButton = eventPreviewUC.GetReadMoreButton();
+            var programPreviewUC = new FundingProgramPreviewUC(fundingProgram.Id, fundingProgram.Name, fundingProgram.Deadline, fundingProgram.FundingAmount);
+            Button readMoreButton = programPreviewUC.GetReadMoreButton();
             readMoreButton.Click += ReadMoreButtonClicked;
 
             var panel = new Panel
@@ -55,8 +60,9 @@ namespace ClientProject.GUIControllers
                 Size = new System.Drawing.Size(230, 307)
             };
 
-            eventPreviewUC.Dock = DockStyle.Fill;
-            panel.Controls.Add(eventPreviewUC);
+            programPreviewUC.Dock = DockStyle.Fill;
+            panel.Controls.Add(programPreviewUC);
+
             _flowPanel.Controls.Add(panel);
         }
 
@@ -78,13 +84,13 @@ namespace ClientProject.GUIControllers
                 return;
             }
 
-            FundingProgram program = response.program;
-            string programName = program.Name;
-            string programDescription = program.Description;
-            DateTime date = program.Deadline;
-            string fundingAmount = program.FundingAmount;
+            if(response.program == null)
+            {
+                Console.WriteLine("Program was null, returning.");
+                return;
+            }
 
-            MainCoordinator.Instance.ChangePanel(CreateSpecificFundingProgramUC(programName, date, fundingAmount, programDescription));
+            MainCoordinator.Instance.ChangePanel(CreateSpecificFundingProgramUC(response.program));
         }
 
         private (FundingProgram program, Exception exception) GetFundingProgramById(int id)

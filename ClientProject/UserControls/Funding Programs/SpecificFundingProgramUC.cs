@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,18 +13,18 @@ namespace ClientProject.UserControls
 {
     public partial class SpecificFundingProgramUC : UserControl
     {
-        public SpecificFundingProgramUC(string programName, DateTime dateTime, string fundingAmount, string description)
+        public SpecificFundingProgramUC(FundingProgram program)
         {
             InitializeComponent();
-            InitializeUI(programName, dateTime, fundingAmount, description);
+            InitializeUI(program);
         }
 
-        private void InitializeUI(string programName, DateTime dateTime, string fundingAmount, string description)
+        private void InitializeUI(FundingProgram program)
         {
-            lblAmount.Text = fundingAmount;
-            lblProgramName.Text = programName;
-            lblDescription.Text = description;
-            lblDate.Text = dateTime.ToString("f");
+            lblAmount.Text = program.FundingAmount;
+            lblProgramName.Text = program.Name;
+            lblDescription.Text = program.Description;
+            lblDate.Text = program.Deadline.ToString("f");
         }
     }
 }

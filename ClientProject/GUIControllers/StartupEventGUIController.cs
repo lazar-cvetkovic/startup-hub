@@ -1,4 +1,6 @@
 ﻿using ClientProject.UserControls;
+using Common.Domain;
+using Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,8 @@ namespace ClientProject.GUIControllers
 {
     internal class StartupEventGUIController
     {
-        FlowLayoutPanel _flowPanel;
+        private List<StartupEvent> _startupEventsList;
+        private FlowLayoutPanel _flowPanel;
 
         internal StartupEventsUC CreateStartupEventsUC()
         {
@@ -26,57 +29,28 @@ namespace ClientProject.GUIControllers
 
         private void FillEvents()
         {
-            AddEventPreview(1, "Startup Event 1", DateTime.Now);
-            AddEventPreview(2, "Startup Event 2", DateTime.Now);
-            AddEventPreview(3, "Startup Event 3", DateTime.Now);
-            AddEventPreview(4, "Startup Event 4", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
-            AddEventPreview(5, "Startup Event 5", DateTime.Now);
+            var serverResponse = Communication.Instance.FindStartupEvents();
+
+            if (serverResponse != null && serverResponse.Exception != null)
+            {
+                HelperMethods.ShowErrorMessage(serverResponse.Exception.Message);
+                return;
+            }
+
+            if (serverResponse == null || serverResponse.Result == null)
+            {
+                return;
+            }
+
+            _startupEventsList = serverResponse.Result as List<StartupEvent>;
+            _startupEventsList.ForEach(e => AddEventPreview(e));
         }
 
-        internal SpecificEventUC CreateSpecificEventUC() => new SpecificEventUC();
+        internal SpecificEventUC CreateSpecificEventUC(StartupEvent startupEvent) => new SpecificEventUC(startupEvent);
 
-        internal void AddEventPreview(int id, string eventName, DateTime dateTime)
+        internal void AddEventPreview(StartupEvent startupEvent)
         {
-            var eventPreviewUC = new EventPreviewUC(id, eventName, dateTime);
+            var eventPreviewUC = new EventPreviewUC(startupEvent.Id, startupEvent.Name, startupEvent.Date);
             Button readMoreButton = eventPreviewUC.GetReadMoreButton();
             readMoreButton.Click += ReadMoreButtonClicked;
 
@@ -87,6 +61,7 @@ namespace ClientProject.GUIControllers
 
             eventPreviewUC.Dock = DockStyle.Fill;
             panel.Controls.Add(eventPreviewUC);
+
             _flowPanel.Controls.Add(panel);
         }
 
@@ -94,11 +69,36 @@ namespace ClientProject.GUIControllers
         {
             Button button = sender as Button;
 
-            if (button != null)
+            if (button == null)
             {
-                int id = (int)button.Tag;
-                MainCoordinator.Instance.ChangePanel(CreateSpecificEventUC());
+                return;
             }
+
+            int id = (int)button.Tag;
+            var response = GetStartupEventById(id);
+
+            if (response.exception != null)
+            {
+                HelperMethods.ShowErrorMessage(response.exception.Message);
+                return;
+            }
+
+            if (response.startupEvent == null)
+            {
+                Console.WriteLine("Startup event was null, returning.");
+                return;
+            }
+
+            MainCoordinator.Instance.ChangePanel(CreateSpecificEventUC(response.startupEvent));
+        }
+
+        private (StartupEvent startupEvent, Exception exception) GetStartupEventById(int id)
+        {
+            var primaryKey = new Dictionary<string, int>() { { "Id", id } };
+
+            var response = Communication.Instance.LoadStartupEvent(primaryKey);
+
+            return ((StartupEvent)response.Result, response.Exception);
         }
     }
 }
