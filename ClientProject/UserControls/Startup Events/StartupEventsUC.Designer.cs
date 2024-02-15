@@ -30,7 +30,8 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.cmbSelectedPanel = new System.Windows.Forms.ComboBox();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cmbSelectedPanel);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -56,22 +58,31 @@
             this.panel1.Size = new System.Drawing.Size(1204, 66);
             this.panel1.TabIndex = 3;
             // 
-            // flowPanel
+            // cmbSelectedPanel
             // 
-            this.flowPanel.AutoScroll = true;
-            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowPanel.Location = new System.Drawing.Point(0, 66);
-            this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.flowPanel.Size = new System.Drawing.Size(1204, 660);
-            this.flowPanel.TabIndex = 4;
+            this.cmbSelectedPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbSelectedPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmbSelectedPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbSelectedPanel.FormattingEnabled = true;
+            this.cmbSelectedPanel.Location = new System.Drawing.Point(999, 19);
+            this.cmbSelectedPanel.Name = "cmbSelectedPanel";
+            this.cmbSelectedPanel.Size = new System.Drawing.Size(180, 21);
+            this.cmbSelectedPanel.TabIndex = 4;
+            // 
+            // panelMain
+            // 
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 66);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1204, 660);
+            this.panelMain.TabIndex = 4;
             // 
             // StartupEventsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.Controls.Add(this.flowPanel);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Name = "StartupEventsUC";
             this.Size = new System.Drawing.Size(1204, 726);
@@ -84,6 +95,7 @@
 
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.FlowLayoutPanel flowPanel;
+        private System.Windows.Forms.ComboBox cmbSelectedPanel;
+        private System.Windows.Forms.Panel panelMain;
     }
 }

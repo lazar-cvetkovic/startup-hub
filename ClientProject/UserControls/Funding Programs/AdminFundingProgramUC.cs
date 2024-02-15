@@ -8,17 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClientProject.UserControls
+namespace ClientProject.UserControls.Funding_Programs
 {
-    public partial class FundingProgramsUC : UserControl
+    public partial class AdminFundingProgramUC : UserControl
     {
-        public FundingProgramsUC()
+        public AdminFundingProgramUC()
         {
             InitializeComponent();
         }
-
-        internal Panel MainPanel => panelMain;
-
-        internal ComboBox CmbSelectedPanel => cmbSelectedPanel;
     }
 }

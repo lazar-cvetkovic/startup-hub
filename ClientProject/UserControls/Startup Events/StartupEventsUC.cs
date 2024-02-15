@@ -17,6 +17,8 @@ namespace ClientProject.UserControls
             InitializeComponent();
         }
 
-        internal FlowLayoutPanel FlowPanel => flowPanel;
+        internal Panel MainPanel => panelMain;
+
+        internal ComboBox SelectedPanelCmb => cmbSelectedPanel;
     }
 }

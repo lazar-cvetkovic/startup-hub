@@ -1,9 +1,12 @@
-﻿using ClientProject.UserControls;
+﻿using ClientProject.Enums;
+using ClientProject.UserControls;
 using ClientProject.UserControls.Funding_Programs;
 using Common.Domain;
+using Common.Enums;
 using Common.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,22 +17,51 @@ namespace ClientProject.GUIControllers
     internal class FundingProgramGUIController
     {
         private List<FundingProgram> _fundingProgramsList;
-        private FlowLayoutPanel _flowPanel;
+        private Panel _mainPanel;
+        private ComboBox _selectedPanelComboBox;
+
+        private bool _isUserAdmin;
 
         public FundingProgramsUC CreateFundingProgramsUC()
         {
             var fundingProgramsUC = new FundingProgramsUC();
 
-            _flowPanel = fundingProgramsUC.FlowPanel;
-            _flowPanel.Controls.Clear();
+            _selectedPanelComboBox = fundingProgramsUC.CmbSelectedPanel;
+            _mainPanel = fundingProgramsUC.MainPanel;
+            _mainPanel.Controls.Clear();
 
-            FillEvents();
+            _isUserAdmin = MainCoordinator.Instance.ConnectedUser.Role == UserRole.Admin;
+
+            InitializeProperPanel();
+            HandleComboBoxActivation();
 
             return fundingProgramsUC;
         }
 
-        private void FillEvents()
+        private void InitializeProperPanel()
         {
+            if (_isUserAdmin)
+            {
+                ChangeUC(new AdminFundingProgramUC());
+            }
+            else
+            {
+                ChangeToMainFundingPanel();
+            }
+        }
+
+        private void ChangeUC(UserControl control)
+        {
+            _mainPanel.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            _mainPanel.Controls.Add(control);
+        }
+
+        private void ChangeToMainFundingPanel()
+        {
+            var flowUC = new FlowPanelUC();
+            ChangeUC(flowUC);
+
             var serverResponse = Communication.Instance.FindFundingPrograms();
 
             if (serverResponse != null && serverResponse.Exception != null)
@@ -44,12 +76,33 @@ namespace ClientProject.GUIControllers
             }
 
             _fundingProgramsList = serverResponse.Result as List<FundingProgram>;
-            _fundingProgramsList.ForEach(p => AddFundingProgramPreview(p));
+            _fundingProgramsList.ForEach(p => AddFundingProgramPreview(p, flowUC.FlowPanel));
         }
 
-        internal SpecificFundingProgramUC CreateSpecificFundingProgramUC(FundingProgram program) => new SpecificFundingProgramUC(program);
+        internal void ChangeToSpecificFundingPanel(FundingProgram program) => ChangeUC(new SpecificFundingProgramUC(program));
 
-        internal void AddFundingProgramPreview(FundingProgram fundingProgram)
+        private void ChangeToAdminPanel() => ChangeUC(new AdminFundingProgramUC());
+
+        private void HandleComboBoxActivation()
+        {
+            _selectedPanelComboBox.Visible = _isUserAdmin;
+            _selectedPanelComboBox.DataSource = new BindingList<PanelType> { PanelType.AdminPanel, PanelType.UserPanel };
+            _selectedPanelComboBox.SelectedIndexChanged += HandleComboBoxChanged;
+        }
+
+        private void HandleComboBoxChanged(object sender, EventArgs e)
+        {
+            if(_selectedPanelComboBox.SelectedIndex == (int)PanelType.AdminPanel)
+            {
+                ChangeToAdminPanel();
+            }
+            else
+            {
+                ChangeToMainFundingPanel();
+            }
+        }
+
+        internal void AddFundingProgramPreview(FundingProgram fundingProgram, FlowLayoutPanel flowPanel)
         {
             var programPreviewUC = new FundingProgramPreviewUC(fundingProgram.Id, fundingProgram.Name, fundingProgram.Deadline, fundingProgram.FundingAmount);
             Button readMoreButton = programPreviewUC.GetReadMoreButton();
@@ -63,7 +116,7 @@ namespace ClientProject.GUIControllers
             programPreviewUC.Dock = DockStyle.Fill;
             panel.Controls.Add(programPreviewUC);
 
-            _flowPanel.Controls.Add(panel);
+            flowPanel.Controls.Add(panel);
         }
 
         private void ReadMoreButtonClicked(object sender, EventArgs e)
@@ -90,7 +143,7 @@ namespace ClientProject.GUIControllers
                 return;
             }
 
-            MainCoordinator.Instance.ChangePanel(CreateSpecificFundingProgramUC(response.program));
+            ChangeToSpecificFundingPanel(response.program);
         }
 
         private (FundingProgram program, Exception exception) GetFundingProgramById(int id)

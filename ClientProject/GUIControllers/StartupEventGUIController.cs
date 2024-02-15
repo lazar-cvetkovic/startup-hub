@@ -1,8 +1,13 @@
-﻿using ClientProject.UserControls;
+﻿using ClientProject.Enums;
+using ClientProject.UserControls;
+using ClientProject.UserControls.Funding_Programs;
+using ClientProject.UserControls.Startup_Events;
 using Common.Domain;
+using Common.Enums;
 using Common.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,22 +18,51 @@ namespace ClientProject.GUIControllers
     internal class StartupEventGUIController
     {
         private List<StartupEvent> _startupEventsList;
-        private FlowLayoutPanel _flowPanel;
+        private Panel _mainPanel;
+        private ComboBox _selectedPanelComboBox;
+
+        private bool _isUserAdmin;
 
         internal StartupEventsUC CreateStartupEventsUC()
         {
             var eventsUC = new StartupEventsUC();
 
-            _flowPanel = eventsUC.FlowPanel;
-            _flowPanel.Controls.Clear();
+            _selectedPanelComboBox = eventsUC.SelectedPanelCmb;
+            _mainPanel = eventsUC.MainPanel;
+            _mainPanel.Controls.Clear();
 
-            FillEvents();
+            _isUserAdmin = MainCoordinator.Instance.ConnectedUser.Role == UserRole.Admin;
+
+            InitializeProperPanel();
+            HandleComboBoxActivation();
 
             return eventsUC;
         }
 
-        private void FillEvents()
+        private void InitializeProperPanel()
         {
+            if (_isUserAdmin)
+            {
+                ChangeUC(new AdminStartupEventUC());
+            }
+            else
+            {
+                ChangeToMainEventPanel();
+            }
+        }
+
+        private void ChangeUC(UserControl control)
+        {
+            _mainPanel.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            _mainPanel.Controls.Add(control);
+        }
+
+        private void ChangeToMainEventPanel()
+        {
+            var flowUC = new FlowPanelUC();
+            ChangeUC(flowUC);
+
             var serverResponse = Communication.Instance.FindStartupEvents();
 
             if (serverResponse != null && serverResponse.Exception != null)
@@ -43,12 +77,36 @@ namespace ClientProject.GUIControllers
             }
 
             _startupEventsList = serverResponse.Result as List<StartupEvent>;
-            _startupEventsList.ForEach(e => AddEventPreview(e));
+            _startupEventsList.ForEach(e => AddEventPreview(e, flowUC.FlowPanel));
         }
+
+        internal void ChangeToSpecificEventPanel(StartupEvent program) => ChangeUC(new SpecificEventUC(program));
+
+        private void ChangeToAdminPanel() => ChangeUC(new AdminStartupEventUC());
+
+        private void HandleComboBoxActivation()
+        {
+            _selectedPanelComboBox.Visible = _isUserAdmin;
+            _selectedPanelComboBox.DataSource = new BindingList<PanelType> { PanelType.AdminPanel, PanelType.UserPanel };
+            _selectedPanelComboBox.SelectedIndexChanged += HandleComboBoxChanged;
+        }
+
+        private void HandleComboBoxChanged(object sender, EventArgs e)
+        {
+            if (_selectedPanelComboBox.SelectedIndex == (int)PanelType.AdminPanel)
+            {
+                ChangeToAdminPanel();
+            }
+            else
+            {
+                ChangeToMainEventPanel();
+            }
+        }
+
 
         internal SpecificEventUC CreateSpecificEventUC(StartupEvent startupEvent) => new SpecificEventUC(startupEvent);
 
-        internal void AddEventPreview(StartupEvent startupEvent)
+        internal void AddEventPreview(StartupEvent startupEvent, FlowLayoutPanel flowPanel)
         {
             var eventPreviewUC = new EventPreviewUC(startupEvent.Id, startupEvent.Name, startupEvent.Date);
             Button readMoreButton = eventPreviewUC.GetReadMoreButton();
@@ -62,7 +120,7 @@ namespace ClientProject.GUIControllers
             eventPreviewUC.Dock = DockStyle.Fill;
             panel.Controls.Add(eventPreviewUC);
 
-            _flowPanel.Controls.Add(panel);
+            flowPanel.Controls.Add(panel);
         }
 
         private void ReadMoreButtonClicked(object sender, EventArgs e)
@@ -89,7 +147,7 @@ namespace ClientProject.GUIControllers
                 return;
             }
 
-            MainCoordinator.Instance.ChangePanel(CreateSpecificEventUC(response.startupEvent));
+            ChangeToSpecificEventPanel(response.startupEvent);
         }
 
         private (StartupEvent startupEvent, Exception exception) GetStartupEventById(int id)

@@ -30,14 +30,17 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.cmbSelectedPanel = new System.Windows.Forms.ComboBox();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cmbSelectedPanel);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Font = new System.Drawing.Font("Manrope ExtraLight", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1204, 66);
@@ -53,23 +56,34 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(481, 66);
             this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "   Available Funding Programs";
+            this.lblTitle.Text = "   Funding Programs";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // flowPanel
+            // cmbSelectedPanel
             // 
-            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowPanel.Location = new System.Drawing.Point(0, 66);
-            this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(1204, 660);
-            this.flowPanel.TabIndex = 6;
+            this.cmbSelectedPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbSelectedPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmbSelectedPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbSelectedPanel.FormattingEnabled = true;
+            this.cmbSelectedPanel.Location = new System.Drawing.Point(1003, 22);
+            this.cmbSelectedPanel.Name = "cmbSelectedPanel";
+            this.cmbSelectedPanel.Size = new System.Drawing.Size(180, 23);
+            this.cmbSelectedPanel.TabIndex = 3;
+            // 
+            // panelMain
+            // 
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 66);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1204, 660);
+            this.panelMain.TabIndex = 6;
             // 
             // FundingProgramsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.Controls.Add(this.flowPanel);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panel1);
             this.Name = "FundingProgramsUC";
             this.Size = new System.Drawing.Size(1204, 726);
@@ -81,6 +95,7 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.FlowLayoutPanel flowPanel;
+        private System.Windows.Forms.ComboBox cmbSelectedPanel;
+        private System.Windows.Forms.Panel panelMain;
     }
 }

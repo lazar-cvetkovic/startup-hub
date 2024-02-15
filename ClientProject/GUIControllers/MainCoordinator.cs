@@ -1,5 +1,6 @@
 ﻿using ClientProject.Forms;
 using ClientProject.UserControls;
+using Common.Domain;
 using Common.Helpers;
 using FontAwesome.Sharp;
 using System;
@@ -32,6 +33,7 @@ namespace ClientProject.GUIControllers
         public FrmLogin LoginForm { get; set; }
         public FrmRegistration RegistrationForm { get; set; }
         public FrmMain MainForm { get; set; }
+        public User ConnectedUser { get; set; }
 
         private EventRegistrationGUIController _registrationController;
         private FundingProgramGUIController _fundingController;
@@ -41,8 +43,6 @@ namespace ClientProject.GUIControllers
         private Label _titleLabel;
         private Panel _mainPanel;
         private Form _currentForm;
-
-        private bool _isAdministrator;
 
         private MainCoordinator()
         {

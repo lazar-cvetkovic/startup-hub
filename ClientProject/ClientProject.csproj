@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Communication.cs" />
+    <Compile Include="Enums\PanelType.cs" />
     <Compile Include="Forms\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,11 +81,29 @@
     <Compile Include="GUIControllers\UserGUIController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Funding Programs\AdminFundingProgramUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Funding Programs\AdminFundingProgramUC.Designer.cs">
+      <DependentUpon>AdminFundingProgramUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FlowPanelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FlowPanelUC.Designer.cs">
+      <DependentUpon>FlowPanelUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Funding Programs\FundingProgramPreviewUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\Funding Programs\FundingProgramPreviewUC.Designer.cs">
       <DependentUpon>FundingProgramPreviewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Startup Events\AdminStartupEventUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Events\AdminStartupEventUC.Designer.cs">
+      <DependentUpon>AdminStartupEventUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Startup Events\EventPreviewUC.cs">
       <SubType>UserControl</SubType>
@@ -136,11 +155,20 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Funding Programs\AdminFundingProgramUC.resx">
+      <DependentUpon>AdminFundingProgramUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FlowPanelUC.resx">
+      <DependentUpon>FlowPanelUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Funding Programs\FundingProgramPreviewUC.resx">
       <DependentUpon>FundingProgramPreviewUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Funding Programs\SpecificFundingProgramUC.resx">
       <DependentUpon>SpecificFundingProgramUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Events\AdminStartupEventUC.resx">
+      <DependentUpon>AdminStartupEventUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Startup Events\EventPreviewUC.resx">
       <DependentUpon>EventPreviewUC.cs</DependentUpon>
