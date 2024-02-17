@@ -72,7 +72,7 @@
             this.lblEventName.Name = "lblEventName";
             this.lblEventName.Size = new System.Drawing.Size(1204, 46);
             this.lblEventName.TabIndex = 14;
-            this.lblEventName.Text = "Name of the funding program";
+            this.lblEventName.Text = "Name of the startup event";
             this.lblEventName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // iconPictureBox1

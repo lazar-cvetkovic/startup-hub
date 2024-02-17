@@ -51,8 +51,9 @@ namespace ClientProject.GUIControllers
                 return;
             }
 
-            HelperMethods.ShowInfoMessage("Welcome!");
             MainCoordinator.Instance.ConnectedUser = (User)response.Result;
+            HelperMethods.ShowInfoMessage($"Welcome {MainCoordinator.Instance.ConnectedUser.Name}!");
+
             MainCoordinator.Instance.ShowMainForm();
         }
 
