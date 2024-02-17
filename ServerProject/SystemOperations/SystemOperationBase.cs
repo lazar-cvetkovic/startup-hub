@@ -27,7 +27,7 @@ namespace ServerProject.SystemOperations
             catch (Exception ex)
             {
                 _broker.Rollback();
-                throw ex;
+                throw;
             }
             finally
             {

@@ -22,7 +22,7 @@ namespace Common.Domain
 
         public string TableName => "FundingProgram";
 
-        public string Values => "@Id, @Name, @Description, @Deadline, @FundingAmount, @UserId";
+        public string Values => "@Name, @Description, @Deadline, @FundingAmount, @UserId";
 
         public string UpdateValues => "Name = @Name, Description = @Description, Deadline = @Deadline, FundingAmount = @FundingAmount, UserId = @UserId";
 

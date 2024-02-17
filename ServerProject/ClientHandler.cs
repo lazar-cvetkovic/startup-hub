@@ -142,7 +142,7 @@ namespace ServerProject
                         return null;
                 }
             }
-            catch
+            catch (Exception)
             {
                 throw;
             }

@@ -16,12 +16,14 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
 {
     public partial class CreateStartupEventUC : UserControl
     {
+        public Button BtnCreate => btnCreate;
+
         public CreateStartupEventUC()
         {
             InitializeComponent();
         }
 
-        public (bool, Exception) IsInputValid()
+        public (bool isValid, Exception exception) IsInputValid()
         {
             string name = txtName.Text;
             string location = txtLocation.Text;
@@ -47,7 +49,7 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
             return (true, null);
         }
 
-        public StartupEvent CreatedStartupEvent() => new StartupEvent
+        public StartupEvent GetCreatedStartupEvent() => new StartupEvent
         {
             Name = txtName.Text,
             Location = txtLocation.Text,

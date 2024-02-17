@@ -1,7 +1,9 @@
 ﻿using ClientProject.Enums;
 using ClientProject.UserControls;
 using ClientProject.UserControls.Funding_Programs;
+using ClientProject.UserControls.Funding_Programs.Admin_Panels;
 using ClientProject.UserControls.Startup_Events;
+using ClientProject.UserControls.Startup_Events.Admin_Panels;
 using Common.Domain;
 using Common.Enums;
 using Common.Helpers;
@@ -12,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Common.Helpers.HelperMethods;
 
 namespace ClientProject.GUIControllers
 {
@@ -25,6 +28,10 @@ namespace ClientProject.GUIControllers
 
         private Panel _mainPanel;
         private Button _switchPanelButton;
+
+        private DeleteOrEditStartupEventUC _deleteOrEditUC;
+        private EditStartupEventUC _editUC;
+        private CreateStartupEventUC _createUC;
 
         private bool _isUserAdmin;
         private bool _isCurrentPanelUser;
@@ -48,6 +55,7 @@ namespace ClientProject.GUIControllers
             return eventsUC;
         }
 
+        #region UC Changing Logic
         private void InitializeProperPanel()
         {
             if (_isUserAdmin)
@@ -106,7 +114,7 @@ namespace ClientProject.GUIControllers
 
             if (serverResponse != null && serverResponse.Exception != null)
             {
-                HelperMethods.ShowErrorMessage(serverResponse.Exception.Message);
+                ShowErrorMessage(serverResponse.Exception.Message);
                 return;
             }
 
@@ -121,16 +129,42 @@ namespace ClientProject.GUIControllers
 
         internal void ChangeToSpecificEventPanel(StartupEvent program) => ChangeUC(new SpecificEventUC(program));
 
-        private void ChangeToAdminPanel() => ChangeUC(new AdminStartupEventUC());
+        private void ChangeToAdminPanel()
+        {
+            var adminPanel = new AdminStartupEventUC();
+            adminPanel.BtnCreate.Click += HandleCreateClick;
+            adminPanel.BtnEdit.Click += HandleOpenChooseEditPanelClick;
+            adminPanel.BtnDelete.Click += HandleOpenChooseEditPanelClick;
+
+            ChangeUC(adminPanel);
+        }
+
+        internal void AddEventPreview(StartupEvent startupEvent, FlowLayoutPanel flowPanel)
+        {
+            var eventPreviewUC = new EventPreviewUC(startupEvent.Id, startupEvent.Name, startupEvent.Date);
+            Button readMoreButton = eventPreviewUC.GetReadMoreButton();
+            readMoreButton.Click += HandleReadMoreClick;
+
+            var panel = new Panel
+            {
+                Size = new System.Drawing.Size(230, 307)
+            };
+
+            eventPreviewUC.Dock = DockStyle.Fill;
+            panel.Controls.Add(eventPreviewUC);
+
+            flowPanel.Controls.Add(panel);
+        }
+        #endregion
 
         private void HandleSwitchButtonActivation()
         {
             _switchPanelButton.Visible = _isUserAdmin;
             _switchPanelButton.Text = SwitchToUserText;
-            _switchPanelButton.Click += HandleSwitchButtonClick;
+            _switchPanelButton.Click += HandleSwitchClick;
         }
 
-        private void HandleSwitchButtonClick(object sender, EventArgs e)
+        private void HandleSwitchClick(object sender, EventArgs e)
         {
             if (_isCurrentPanelUser)
             {
@@ -146,26 +180,7 @@ namespace ClientProject.GUIControllers
             _isCurrentPanelUser = !_isCurrentPanelUser;
         }
 
-        internal SpecificEventUC CreateSpecificEventUC(StartupEvent startupEvent) => new SpecificEventUC(startupEvent);
-
-        internal void AddEventPreview(StartupEvent startupEvent, FlowLayoutPanel flowPanel)
-        {
-            var eventPreviewUC = new EventPreviewUC(startupEvent.Id, startupEvent.Name, startupEvent.Date);
-            Button readMoreButton = eventPreviewUC.GetReadMoreButton();
-            readMoreButton.Click += ReadMoreButtonClicked;
-
-            var panel = new Panel
-            {
-                Size = new System.Drawing.Size(230, 307)
-            };
-
-            eventPreviewUC.Dock = DockStyle.Fill;
-            panel.Controls.Add(eventPreviewUC);
-
-            flowPanel.Controls.Add(panel);
-        }
-
-        private void ReadMoreButtonClicked(object sender, EventArgs e)
+        private void HandleReadMoreClick(object sender, EventArgs e)
         {
             Button button = sender as Button;
 
@@ -179,7 +194,7 @@ namespace ClientProject.GUIControllers
 
             if (response.exception != null)
             {
-                HelperMethods.ShowErrorMessage(response.exception.Message);
+                ShowErrorMessage(response.exception.Message);
                 return;
             }
 
@@ -192,6 +207,137 @@ namespace ClientProject.GUIControllers
             ChangeToSpecificEventPanel(response.startupEvent);
         }
 
+        private void HandleCreateClick(object sender, EventArgs e)
+        {
+            _createUC = new CreateStartupEventUC();
+            _createUC.BtnCreate.Click += HandleCreatePanelClick;
+
+            ChangeUC(_createUC);
+        }
+
+        private void HandleCreatePanelClick(object sender, EventArgs e)
+        {
+            var validateInput = _createUC.IsInputValid();
+
+            if (!validateInput.isValid)
+            {
+                ShowErrorMessage(validateInput.exception.Message);
+                return;
+            }
+
+            var response = CreateStartupEvent(_createUC.GetCreatedStartupEvent());
+
+            if (response.isSuccessful)
+            {
+                ShowInfoMessage("Successfully created!");
+            }
+            else
+            {
+                ShowErrorMessage(response.exception.Message);
+            }
+        }
+
+        private void HandleOpenChooseEditPanelClick(object sender, EventArgs e)
+        {
+            var response = GetStartupEvents();
+
+            if (response.exception != null)
+            {
+                ShowErrorMessage(response.exception.Message);
+                return;
+            }
+
+            if (response.startupEvents == null)
+            {
+                ShowErrorMessage("Error getting the programs");
+                return;
+            }
+
+            _deleteOrEditUC = new DeleteOrEditStartupEventUC(response.startupEvents);
+            _deleteOrEditUC.BtnEdit.Click += HandleOpenEditPanelClick;
+            _deleteOrEditUC.BtnDelete.Click += HandleDeleteEventClick;
+
+            ChangeUC(_deleteOrEditUC);
+        }
+
+        private void HandleOpenEditPanelClick(object sender, EventArgs e)
+        {
+            var selectedProgram = _deleteOrEditUC.GetSelectedEvent();
+
+            if (selectedProgram.exception != null)
+            {
+                ShowErrorMessage(selectedProgram.exception.Message);
+                return;
+            }
+
+            _editUC = new EditStartupEventUC(selectedProgram.startupEvent);
+            _editUC.BtnEdit.Click += HandleEditEventClick;
+
+            ChangeUC(_editUC);
+        }
+
+        private void HandleEditEventClick(object sender, EventArgs e)
+        {
+            var validateInput = _editUC.IsInputValid();
+
+            if (!validateInput.isValid)
+            {
+                ShowErrorMessage(validateInput.exception.Message);
+                return;
+            }
+
+            var selectedEvent = _deleteOrEditUC.GetSelectedEvent();
+
+            if (selectedEvent.exception != null)
+            {
+                ShowErrorMessage(selectedEvent.exception.Message);
+                return;
+            }
+
+            StartupEvent startupEvent = _editUC.GetCreatedStartupEvent();
+            startupEvent.Id = selectedEvent.startupEvent.Id;
+
+            var response = EditStartupEvent(startupEvent);
+
+            if (response.isSuccessful)
+            {
+                ShowInfoMessage("Successful edit!");
+            }
+            else
+            {
+                ShowErrorMessage(response.exception.Message);
+            }
+        }
+
+        private void HandleDeleteEventClick(object sender, EventArgs e)
+        {
+            if(ShowYesNoMessage("Are you sure that you want to delete this startup event?") == DialogResult.No)
+            {
+                return;
+            }
+
+            var selectedEvent = _deleteOrEditUC.GetSelectedEvent();
+
+            if (selectedEvent.exception != null)
+            {
+                ShowErrorMessage(selectedEvent.exception.Message);
+                return;
+            }
+
+            var response = DeleteStartupEvent(selectedEvent.startupEvent);
+            _deleteOrEditUC.Refresh();
+
+            if (response.isSuccessful)
+            {
+                ShowInfoMessage("Successfully deleted!");
+            }
+            else
+            {
+                ShowErrorMessage(response.exception.Message);
+            }
+        }
+
+        #region Database Methods
         private (StartupEvent startupEvent, Exception exception) GetStartupEventById(int id)
         {
             var primaryKey = new Dictionary<string, int>() { { "Id", id } };
@@ -200,5 +346,37 @@ namespace ClientProject.GUIControllers
 
             return ((StartupEvent)response.Result, response.Exception);
         }
+
+        private (List<StartupEvent> startupEvents, Exception exception) GetStartupEvents()
+        {
+            var response = Communication.Instance.FindStartupEvents();
+
+            return (response.Result as List<StartupEvent>, response.Exception);
+        }
+
+        private (bool isSuccessful, Exception exception) CreateStartupEvent(StartupEvent startupEvent)
+        {
+            var response = Communication.Instance.CreateStartupEvent(startupEvent);
+            bool isSuccessful = response.Exception == null;
+
+            return (isSuccessful, response.Exception);
+        }
+
+        private (bool isSuccessful, Exception exception) EditStartupEvent(StartupEvent startupEvent)
+        {
+            var response = Communication.Instance.SaveStartupEvent(startupEvent);
+            bool isSuccessful = response.Exception == null;
+
+            return (isSuccessful, response.Exception);
+        }
+
+        private (bool isSuccessful, Exception exception) DeleteStartupEvent(StartupEvent startupEvent)
+        {
+            var response = Communication.Instance.DeleteStartupEvent(startupEvent);
+            bool isSuccessful = response.Exception == null;
+
+            return (isSuccessful, response.Exception);
+        }
+        #endregion
     }
 }

@@ -43,6 +43,7 @@ namespace DatabaseBroker
                 query = (condition == null) ? query : (query + $" WHERE {condition}");
 
                 command.CommandText = query;
+                Console.WriteLine(command.CommandText);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -57,6 +58,8 @@ namespace DatabaseBroker
             {
                 command.CommandText = $"INSERT INTO {entity.TableName} VALUES ({entity.Values})";
                 entity.AddSqlParameters(command);
+
+                Console.WriteLine(command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -67,6 +70,8 @@ namespace DatabaseBroker
             {
                 command.CommandText = $"UPDATE {entity.TableName} SET {entity.UpdateValues} WHERE {entity.PrimaryKey}";
                 entity.AddSqlParameters(command);
+
+                Console.WriteLine(command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -77,6 +82,8 @@ namespace DatabaseBroker
             {
                 command.CommandText = $"DELETE FROM {entity.TableName} WHERE {entity.PrimaryKey}";
                 entity.AddSqlParameters(command);
+
+                Console.WriteLine(command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -92,6 +99,8 @@ namespace DatabaseBroker
                 {
                     command.Parameters.AddWithValue($"@{id.Key}", id.Value);
                 }
+
+                Console.WriteLine(command.CommandText);
 
                 using (var reader = command.ExecuteReader())
                 {

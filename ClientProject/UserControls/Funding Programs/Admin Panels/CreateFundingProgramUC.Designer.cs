@@ -152,7 +152,7 @@
             this.lblProgramName.Name = "lblProgramName";
             this.lblProgramName.Size = new System.Drawing.Size(1204, 46);
             this.lblProgramName.TabIndex = 18;
-            this.lblProgramName.Text = "Create Funding Program";
+            this.lblProgramName.Text = "Create a Funding Program";
             this.lblProgramName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // iconPictureBox1

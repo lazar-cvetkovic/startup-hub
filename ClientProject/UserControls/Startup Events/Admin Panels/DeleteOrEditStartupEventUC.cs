@@ -13,6 +13,9 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
 {
     public partial class DeleteOrEditStartupEventUC : UserControl
     {
+        public Button BtnEdit => btnEdit;
+        public Button BtnDelete=> btnDelete;
+
         public DeleteOrEditStartupEventUC(List<StartupEvent> startupEvents)
         {
             InitializeComponent();
@@ -25,7 +28,7 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
             dgvResults.DataSource = bindingListOfEvents;
         }
 
-        public (StartupEvent, Exception) GetSelectedEvent()
+        public (StartupEvent startupEvent, Exception exception) GetSelectedEvent()
         {
             if (dgvResults.CurrentRow == null)
             {

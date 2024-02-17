@@ -16,6 +16,8 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
 {
     public partial class EditStartupEventUC : UserControl
     {
+        public Button BtnEdit => btnEdit;
+
         public EditStartupEventUC(StartupEvent startupEvent)
         {
             InitializeComponent();
@@ -24,13 +26,13 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
 
         private void InitializeFields(StartupEvent startupEvent)
         {
-            txtName.Name = startupEvent.Name;
+            txtName.Text = startupEvent.Name;
             txtLocation.Text = startupEvent.Location;
             txtDate.Text = startupEvent.Date.ToString("yyyy/MM/dd HH:mm", CultureInfo.InvariantCulture);
             txtDescription.Text = startupEvent.Description;
         }
 
-        public (bool, Exception) IsInputValid()
+        public (bool isValid, Exception exception) IsInputValid()
         {
             string name = txtName.Text;
             string location = txtLocation.Text;
@@ -56,7 +58,7 @@ namespace ClientProject.UserControls.Startup_Events.Admin_Panels
             return (true, null);
         }
 
-        public StartupEvent CreatedStartupEvent() => new StartupEvent
+        public StartupEvent GetCreatedStartupEvent() => new StartupEvent
         {
             Name = txtName.Text,
             Location = txtLocation.Text,

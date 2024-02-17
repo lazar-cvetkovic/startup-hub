@@ -16,6 +16,8 @@ namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
 {
     public partial class EditFundingProgramUC : UserControl
     {
+        public Button BtnEdit => btnEdit;
+
         public EditFundingProgramUC(FundingProgram fundingProgram)
         {
             InitializeComponent();
@@ -24,13 +26,13 @@ namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
 
         private void InitializeFields(FundingProgram fundingProgram)
         {
-            txtName.Name = fundingProgram.Name;
+            txtName.Text = fundingProgram.Name;
             txtAmount.Text = fundingProgram.FundingAmount;
             txtDeadline.Text = fundingProgram.Deadline.ToString("yyyy/MM/dd HH:mm", CultureInfo.InvariantCulture);
             txtDescription.Text = fundingProgram.Description;
         }
 
-        public (bool, Exception) IsInputValid()
+        public (bool isValid, Exception exception) IsInputValid()
         {
             string name = txtName.Text;
             string amount = txtAmount.Text;
@@ -56,7 +58,7 @@ namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
             return (true, null);
         }
 
-        public FundingProgram CreatedFundingProgram() => new FundingProgram
+        public FundingProgram GetCreatedFundingProgram() => new FundingProgram
         {
             Name = txtName.Text,
             FundingAmount = txtAmount.Text,

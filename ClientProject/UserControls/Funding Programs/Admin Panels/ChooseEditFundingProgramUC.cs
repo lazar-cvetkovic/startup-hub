@@ -11,9 +11,11 @@ using System.Windows.Forms;
 
 namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
 {
-    public partial class DeleteOrEditFundingProgramUC : UserControl
+    public partial class ChooseEditFundingProgramUC : UserControl
     {
-        public DeleteOrEditFundingProgramUC(List<FundingProgram> fundingPrograms)
+        public Button BtnEdit => btnChoose; 
+
+        public ChooseEditFundingProgramUC(List<FundingProgram> fundingPrograms)
         {
             InitializeComponent();
             InitializeDataGridView(fundingPrograms);
@@ -25,7 +27,7 @@ namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
             dgvResults.DataSource = bindingListOfPrograms;
         }
 
-        public (FundingProgram, Exception) GetSelectedProgram()
+        public (FundingProgram program, Exception exception) GetSelectedProgram()
         {
             if (dgvResults.CurrentRow == null)
             {

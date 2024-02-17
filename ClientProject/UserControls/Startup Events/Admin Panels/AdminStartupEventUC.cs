@@ -12,6 +12,10 @@ namespace ClientProject.UserControls.Startup_Events
 {
     public partial class AdminStartupEventUC : UserControl
     {
+        public Button BtnCreate => btnCreate;
+        public Button BtnEdit => btnEdit;
+        public Button BtnDelete => btnDelete;
+
         public AdminStartupEventUC()
         {
             InitializeComponent();

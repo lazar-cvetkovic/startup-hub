@@ -16,12 +16,14 @@ namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
 {
     public partial class CreateFundingProgramUC : UserControl
     {
+        public Button BtnCreate => btnCreate;
+
         public CreateFundingProgramUC()
         {
             InitializeComponent();
         }
 
-        public (bool, Exception) IsInputValid()
+        public (bool isValid, Exception exception) IsInputValid()
         {
             string name = txtName.Text;
             string amount = txtAmount.Text;
@@ -47,7 +49,7 @@ namespace ClientProject.UserControls.Funding_Programs.Admin_Panels
             return (true, null);
         }
 
-        public FundingProgram CreatedFundingProgram() => new FundingProgram
+        public FundingProgram GetCreatedFundingProgram() => new FundingProgram
         {
             Name = txtName.Text,
             FundingAmount = txtAmount.Text,

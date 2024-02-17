@@ -99,11 +99,11 @@
     <Compile Include="UserControls\Funding Programs\Admin Panels\CreateFundingProgramUC.Designer.cs">
       <DependentUpon>CreateFundingProgramUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Funding Programs\Admin Panels\DeleteOrEditFundingProgramUC.cs">
+    <Compile Include="UserControls\Funding Programs\Admin Panels\ChooseEditFundingProgramUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\Funding Programs\Admin Panels\DeleteOrEditFundingProgramUC.Designer.cs">
-      <DependentUpon>DeleteOrEditFundingProgramUC.cs</DependentUpon>
+    <Compile Include="UserControls\Funding Programs\Admin Panels\ChooseEditFundingProgramUC.Designer.cs">
+      <DependentUpon>ChooseEditFundingProgramUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Funding Programs\Admin Panels\EditFundingProgramUC.cs">
       <SubType>UserControl</SubType>
@@ -200,8 +200,8 @@
     <EmbeddedResource Include="UserControls\Funding Programs\Admin Panels\CreateFundingProgramUC.resx">
       <DependentUpon>CreateFundingProgramUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\Funding Programs\Admin Panels\DeleteOrEditFundingProgramUC.resx">
-      <DependentUpon>DeleteOrEditFundingProgramUC.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\Funding Programs\Admin Panels\ChooseEditFundingProgramUC.resx">
+      <DependentUpon>ChooseEditFundingProgramUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Funding Programs\Admin Panels\EditFundingProgramUC.resx">
       <DependentUpon>EditFundingProgramUC.cs</DependentUpon>

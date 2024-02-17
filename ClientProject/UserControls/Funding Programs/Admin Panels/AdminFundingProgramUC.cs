@@ -12,9 +12,13 @@ namespace ClientProject.UserControls.Funding_Programs
 {
     public partial class AdminFundingProgramUC : UserControl
     {
+        public Button BtnCreate => btnCreate;
+        public Button BtnEdit => btnEdit;
+
         public AdminFundingProgramUC()
         {
             InitializeComponent();
+            
         }
     }
 }
