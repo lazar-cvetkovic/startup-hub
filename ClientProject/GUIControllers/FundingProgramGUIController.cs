@@ -1,6 +1,7 @@
 ﻿using ClientProject.Enums;
 using ClientProject.UserControls;
 using ClientProject.UserControls.Funding_Programs;
+using ClientProject.UserControls.Startup_Events;
 using Common.Domain;
 using Common.Enums;
 using Common.Helpers;
@@ -16,24 +17,33 @@ namespace ClientProject.GUIControllers
 {
     internal class FundingProgramGUIController
     {
+        private const string SwitchToAdminText = " Switch to Admin Panel";
+        private const string SwitchToUserText = " Switch to User Panel";
+
         private List<FundingProgram> _fundingProgramsList;
+        private Stack<UserControl> _userControlHistory;
+
         private Panel _mainPanel;
-        private ComboBox _selectedPanelComboBox;
+        private Button _switchPanelButton;
 
         private bool _isUserAdmin;
+        private bool _isCurrentPanelUser;
 
         public FundingProgramsUC CreateFundingProgramsUC()
         {
             var fundingProgramsUC = new FundingProgramsUC();
+            _userControlHistory = new Stack<UserControl>();
 
-            _selectedPanelComboBox = fundingProgramsUC.CmbSelectedPanel;
+            _switchPanelButton = fundingProgramsUC.BtnSwitch;
+            fundingProgramsUC.BtnBack.Click += LoadLastUC;
+
             _mainPanel = fundingProgramsUC.MainPanel;
             _mainPanel.Controls.Clear();
 
             _isUserAdmin = MainCoordinator.Instance.ConnectedUser.Role == UserRole.Admin;
 
             InitializeProperPanel();
-            HandleComboBoxActivation();
+            HandleSwitchButtonActivation();
 
             return fundingProgramsUC;
         }
@@ -42,11 +52,36 @@ namespace ClientProject.GUIControllers
         {
             if (_isUserAdmin)
             {
-                ChangeUC(new AdminFundingProgramUC());
+                ChangeToAdminPanel();
             }
             else
             {
                 ChangeToMainFundingPanel();
+            }
+        }
+
+        private void LoadLastUC(object sender, EventArgs e)
+        {
+            if (_userControlHistory.Count == 1 || _userControlHistory.Count == 0)
+            {
+                return;
+            }
+
+            _userControlHistory.Pop();
+            var lastUC = _userControlHistory.Peek();
+
+            ChangeUC(lastUC);
+
+            if (lastUC is AdminStartupEventUC)
+            {
+                _isCurrentPanelUser = false;
+                _switchPanelButton.Text = SwitchToUserText;
+            }
+
+            if (lastUC is FlowPanelUC)
+            {
+                _isCurrentPanelUser = true;
+                _switchPanelButton.Text = SwitchToAdminText;
             }
         }
 
@@ -55,6 +90,11 @@ namespace ClientProject.GUIControllers
             _mainPanel.Controls.Clear();
             control.Dock = DockStyle.Fill;
             _mainPanel.Controls.Add(control);
+
+            if (_userControlHistory.Count == 0 || _userControlHistory.Peek().GetType() != control.GetType())
+            {
+                _userControlHistory.Push(control);
+            }
         }
 
         private void ChangeToMainFundingPanel()
@@ -83,23 +123,27 @@ namespace ClientProject.GUIControllers
 
         private void ChangeToAdminPanel() => ChangeUC(new AdminFundingProgramUC());
 
-        private void HandleComboBoxActivation()
+        private void HandleSwitchButtonActivation()
         {
-            _selectedPanelComboBox.Visible = _isUserAdmin;
-            _selectedPanelComboBox.DataSource = new BindingList<PanelType> { PanelType.AdminPanel, PanelType.UserPanel };
-            _selectedPanelComboBox.SelectedIndexChanged += HandleComboBoxChanged;
+            _switchPanelButton.Visible = _isUserAdmin;
+            _switchPanelButton.Text = SwitchToUserText;
+            _switchPanelButton.Click += HandleSwitchButtonClick;
         }
 
-        private void HandleComboBoxChanged(object sender, EventArgs e)
+        private void HandleSwitchButtonClick(object sender, EventArgs e)
         {
-            if(_selectedPanelComboBox.SelectedIndex == (int)PanelType.AdminPanel)
+            if(_isCurrentPanelUser)
             {
+                _switchPanelButton.Text = SwitchToAdminText;
                 ChangeToAdminPanel();
             }
             else
             {
+                _switchPanelButton.Text = SwitchToUserText;
                 ChangeToMainFundingPanel();
             }
+
+            _isCurrentPanelUser = !_isCurrentPanelUser;
         }
 
         internal void AddFundingProgramPreview(FundingProgram fundingProgram, FlowLayoutPanel flowPanel)

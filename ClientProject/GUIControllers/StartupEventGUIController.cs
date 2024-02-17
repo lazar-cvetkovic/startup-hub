@@ -17,24 +17,33 @@ namespace ClientProject.GUIControllers
 {
     internal class StartupEventGUIController
     {
+        private const string SwitchToAdminText = " Switch to Admin Panel";
+        private const string SwitchToUserText = " Switch to User Panel";
+
         private List<StartupEvent> _startupEventsList;
+        private Stack<UserControl> _userControlHistory;
+
         private Panel _mainPanel;
-        private ComboBox _selectedPanelComboBox;
+        private Button _switchPanelButton;
 
         private bool _isUserAdmin;
+        private bool _isCurrentPanelUser;
 
         internal StartupEventsUC CreateStartupEventsUC()
         {
             var eventsUC = new StartupEventsUC();
+            _userControlHistory = new Stack<UserControl>();
 
-            _selectedPanelComboBox = eventsUC.SelectedPanelCmb;
+            _switchPanelButton = eventsUC.BtnSwitch;
+            eventsUC.BtnBack.Click += LoadLastUC;
+
             _mainPanel = eventsUC.MainPanel;
             _mainPanel.Controls.Clear();
 
             _isUserAdmin = MainCoordinator.Instance.ConnectedUser.Role == UserRole.Admin;
 
             InitializeProperPanel();
-            HandleComboBoxActivation();
+            HandleSwitchButtonActivation();
 
             return eventsUC;
         }
@@ -43,11 +52,36 @@ namespace ClientProject.GUIControllers
         {
             if (_isUserAdmin)
             {
-                ChangeUC(new AdminStartupEventUC());
+                ChangeToAdminPanel();
             }
             else
             {
                 ChangeToMainEventPanel();
+            }
+        }
+
+        private void LoadLastUC(object sender, EventArgs e)
+        {
+            if (_userControlHistory.Count == 1 || _userControlHistory.Count == 0)
+            {
+                return;
+            }
+
+            _userControlHistory.Pop();
+            var lastUC = _userControlHistory.Peek();
+
+            ChangeUC(lastUC);
+
+            if(lastUC is AdminStartupEventUC)
+            {
+                _isCurrentPanelUser = false;
+                _switchPanelButton.Text = SwitchToUserText;
+            }
+
+            if(lastUC is FlowPanelUC)
+            {
+                _isCurrentPanelUser = true;
+                _switchPanelButton.Text = SwitchToAdminText;
             }
         }
 
@@ -56,6 +90,11 @@ namespace ClientProject.GUIControllers
             _mainPanel.Controls.Clear();
             control.Dock = DockStyle.Fill;
             _mainPanel.Controls.Add(control);
+
+            if(_userControlHistory.Count == 0 || _userControlHistory.Peek().GetType() != control.GetType())
+            {
+                _userControlHistory.Push(control);
+            }
         }
 
         private void ChangeToMainEventPanel()
@@ -84,25 +123,28 @@ namespace ClientProject.GUIControllers
 
         private void ChangeToAdminPanel() => ChangeUC(new AdminStartupEventUC());
 
-        private void HandleComboBoxActivation()
+        private void HandleSwitchButtonActivation()
         {
-            _selectedPanelComboBox.Visible = _isUserAdmin;
-            _selectedPanelComboBox.DataSource = new BindingList<PanelType> { PanelType.AdminPanel, PanelType.UserPanel };
-            _selectedPanelComboBox.SelectedIndexChanged += HandleComboBoxChanged;
+            _switchPanelButton.Visible = _isUserAdmin;
+            _switchPanelButton.Text = SwitchToUserText;
+            _switchPanelButton.Click += HandleSwitchButtonClick;
         }
 
-        private void HandleComboBoxChanged(object sender, EventArgs e)
+        private void HandleSwitchButtonClick(object sender, EventArgs e)
         {
-            if (_selectedPanelComboBox.SelectedIndex == (int)PanelType.AdminPanel)
+            if (_isCurrentPanelUser)
             {
+                _switchPanelButton.Text = SwitchToUserText;
                 ChangeToAdminPanel();
             }
             else
             {
+                _switchPanelButton.Text = SwitchToAdminText;
                 ChangeToMainEventPanel();
             }
-        }
 
+            _isCurrentPanelUser = !_isCurrentPanelUser;
+        }
 
         internal SpecificEventUC CreateSpecificEventUC(StartupEvent startupEvent) => new SpecificEventUC(startupEvent);
 

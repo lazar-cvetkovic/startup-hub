@@ -30,14 +30,16 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.cmbSelectedPanel = new System.Windows.Forms.ComboBox();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.btnBack = new FontAwesome.Sharp.IconButton();
+            this.btnSwitch = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cmbSelectedPanel);
+            this.panel1.Controls.Add(this.btnSwitch);
+            this.panel1.Controls.Add(this.btnBack);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("Manrope ExtraLight", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -59,17 +61,6 @@
             this.lblTitle.Text = "   Funding Programs";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cmbSelectedPanel
-            // 
-            this.cmbSelectedPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbSelectedPanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.cmbSelectedPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbSelectedPanel.FormattingEnabled = true;
-            this.cmbSelectedPanel.Location = new System.Drawing.Point(1003, 22);
-            this.cmbSelectedPanel.Name = "cmbSelectedPanel";
-            this.cmbSelectedPanel.Size = new System.Drawing.Size(180, 23);
-            this.cmbSelectedPanel.TabIndex = 3;
-            // 
             // panelMain
             // 
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -77,6 +68,52 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1204, 660);
             this.panelMain.TabIndex = 6;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnBack.IconChar = FontAwesome.Sharp.IconChar.RotateBackward;
+            this.btnBack.IconColor = System.Drawing.Color.Gainsboro;
+            this.btnBack.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBack.IconSize = 35;
+            this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.Location = new System.Drawing.Point(1058, 0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnBack.Size = new System.Drawing.Size(146, 66);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = " Go Back";
+            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBack.UseVisualStyleBackColor = false;
+            // 
+            // btnSwitch
+            // 
+            this.btnSwitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.btnSwitch.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSwitch.FlatAppearance.BorderSize = 0;
+            this.btnSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSwitch.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSwitch.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnSwitch.IconChar = FontAwesome.Sharp.IconChar.Table;
+            this.btnSwitch.IconColor = System.Drawing.Color.Gainsboro;
+            this.btnSwitch.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSwitch.IconSize = 35;
+            this.btnSwitch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSwitch.Location = new System.Drawing.Point(758, 0);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnSwitch.Size = new System.Drawing.Size(300, 66);
+            this.btnSwitch.TabIndex = 10;
+            this.btnSwitch.Text = " Switch to User Panel";
+            this.btnSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSwitch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSwitch.UseVisualStyleBackColor = false;
             // 
             // FundingProgramsUC
             // 
@@ -95,7 +132,8 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.ComboBox cmbSelectedPanel;
         private System.Windows.Forms.Panel panelMain;
+        private FontAwesome.Sharp.IconButton btnBack;
+        private FontAwesome.Sharp.IconButton btnSwitch;
     }
 }

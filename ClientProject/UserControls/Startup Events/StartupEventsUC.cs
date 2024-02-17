@@ -19,6 +19,8 @@ namespace ClientProject.UserControls
 
         internal Panel MainPanel => panelMain;
 
-        internal ComboBox SelectedPanelCmb => cmbSelectedPanel;
+        internal Button BtnBack => btnBack;
+
+        internal Button BtnSwitch => btnSwitch;
     }
 }
