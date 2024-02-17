@@ -20,7 +20,7 @@ namespace Common.Domain
 
         #region SQL Properties and Methods
 
-        public string TableName => "User";
+        public string TableName => "[User]";
 
         public string Values => "@Email, @Name, @Password, @Role";
 

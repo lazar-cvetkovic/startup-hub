@@ -27,10 +27,25 @@ namespace ClientProject.Forms
         {
             InitializeComponent();
             InitializeEvents();
+            InitializeHelperText();
+
             MainCoordinator.Instance.InitializeRegistrationForm(this);
         }
 
         #region Helper Text Logic
+        private void InitializeHelperText()
+        {
+            txtEmail.Text = EmailHelperText;
+            txtPassword.Text = PasswordHelperText;
+            txtUsername.Text = UsernameHelperText;
+
+            txtEmail.ForeColor = Color.Gray;
+            txtPassword.ForeColor = Color.Gray;
+            txtUsername.ForeColor = Color.Gray;
+
+            txtPassword.UseSystemPasswordChar = false;
+        }
+
         private void InitializeEvents()
         {
             txtUsername.Tag = "username";
@@ -53,6 +68,11 @@ namespace ClientProject.Forms
             {
                 textBox.Text = "";
                 textBox.ForeColor = Color.Black;
+
+                if ((string)textBox.Tag == "password")
+                {
+                    txtPassword.UseSystemPasswordChar = true;
+                }
             }
         }
 
@@ -75,11 +95,17 @@ namespace ClientProject.Forms
                 else
                 {
                     textBox.Text = PasswordHelperText;
+                    txtPassword.UseSystemPasswordChar = false;
                 }
 
                 textBox.ForeColor = Color.Gray;
             }
         }
         #endregion
+
+        private void HandleCloseClick(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

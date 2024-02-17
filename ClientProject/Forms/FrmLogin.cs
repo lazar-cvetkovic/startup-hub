@@ -25,10 +25,22 @@ namespace ClientProject
         {
             InitializeComponent();
             InitializeEvents();
+            InitializeHelperText();
             MainCoordinator.Instance.InitializeLoginForm(this);
         }
 
         #region Helper Text Logic
+        private void InitializeHelperText()
+        {
+            txtEmail.Text = EmailHelperText;
+            txtPassword.Text = PasswordHelperText;
+
+            txtEmail.ForeColor = Color.Gray;
+            txtPassword.ForeColor = Color.Gray;
+
+            txtPassword.UseSystemPasswordChar = false;
+        }
+
         private void InitializeEvents()
         {
             txtEmail.Tag = "email";
@@ -48,6 +60,11 @@ namespace ClientProject
             {
                 textBox.Text = "";
                 textBox.ForeColor = Color.Black;
+
+                if((string)textBox.Tag == "password")
+                {
+                    txtPassword.UseSystemPasswordChar = true;
+                }
             }
         }
 
@@ -60,8 +77,18 @@ namespace ClientProject
 
                 textBox.Text = isEmail ? EmailHelperText : PasswordHelperText;
                 textBox.ForeColor = Color.Gray;
+
+                if (!isEmail)
+                {
+                    txtPassword.UseSystemPasswordChar = false;
+                }
             }
         }
         #endregion
+
+        private void HandleCloseClick(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

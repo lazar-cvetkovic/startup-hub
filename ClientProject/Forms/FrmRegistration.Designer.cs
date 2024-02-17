@@ -29,45 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegistration));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::ClientProject.Properties.Resources.Register_page;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(800, 436);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.BackgroundImage = global::ClientProject.Properties.Resources.Close_button;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(771, 9);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.UseVisualStyleBackColor = false;
             // 
             // txtEmail
             // 
@@ -127,6 +97,37 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(196, 16);
             this.txtUsername.TabIndex = 8;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.BackgroundImage = global::ClientProject.Properties.Resources.Close_button;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.Black;
+            this.btnClose.Location = new System.Drawing.Point(771, 9);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.HandleCloseClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::ClientProject.Properties.Resources.Register_page;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(800, 436);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmRegistration
             // 

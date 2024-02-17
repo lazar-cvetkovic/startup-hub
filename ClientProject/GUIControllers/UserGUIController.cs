@@ -1,5 +1,6 @@
 ﻿using ClientProject.Forms;
 using Common.Domain;
+using Common.Enums;
 using Common.Helpers;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace ClientProject.GUIControllers
             string email = _loginForm.Email;
             string password = _loginForm.Password;
 
-            if (!IsLoginInputValid(email, password))
+            if (!IsInputValid(email, password))
             {
                 return;
             }
@@ -57,9 +58,10 @@ namespace ClientProject.GUIControllers
             MainCoordinator.Instance.ShowMainForm();
         }
 
-        private bool IsLoginInputValid(string email, string password)
+        private bool IsInputValid(string email, params string[] inputs)
         {
-            if(StringExtensions.AreNullOrEmpty(email, password))
+            inputs.Append(email);
+            if(StringExtensions.AreNullOrEmpty(inputs))
             {
                 HelperMethods.ShowErrorMessage("Please fill in the required inputs.");
                 return false;
@@ -82,7 +84,34 @@ namespace ClientProject.GUIControllers
 
         private void RegisterButtonClicked(object sender, EventArgs e)
         {
-            
+            string email = _registerForm.Email;
+            string password = _registerForm.Password;
+            string username = _registerForm.Username;
+
+            if (!IsInputValid(email, password, username))
+            {
+                return;
+            }
+
+            var user = new User
+            {
+                Email = email,
+                Password = password,
+                Name = username,
+                Role = UserRole.Normal
+            };
+
+            var response = Communication.Instance.CreateUser(user);
+
+            if (response.Exception != null)
+            {
+                HelperMethods.ShowErrorMessage(response.Exception.Message);
+                return;
+            }
+
+            HelperMethods.ShowInfoMessage($"User has been successfully created!");
+
+            MainCoordinator.Instance.ShowLoginForm();
         }
 
         private bool IsEmailValid(string email) => email.Contains('@') && email.Contains('.');
