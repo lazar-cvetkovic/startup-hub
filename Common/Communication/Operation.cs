@@ -19,7 +19,7 @@ namespace Common.Communication
         LoadEvent = 8,
         LoadFunding = 9,
         LoadRegistration = 10,
-        LoadEventsCollection = 11,
+        LoadStartupEventQuestions = 11,
         SaveEvent = 12,
         SaveFunding = 13,
         SaveRegistration = 14,

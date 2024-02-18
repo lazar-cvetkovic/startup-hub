@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Common.Helpers;
 using DatabaseBroker;
 using ServerProject.SystemOperations;
 using ServerProject.SystemOperations.Create;
@@ -40,7 +41,7 @@ namespace ServerProject
         }
 
         #region INSERT Operations
-        internal void CreateEventRegistration(StartupEventRegistration argument)
+        internal void CreateEventRegistration(FullRegistration argument)
         {
             var systemOperation = new CreateEventRegistrationSO(argument);
             systemOperation.ExecuteTemplate();
@@ -91,9 +92,9 @@ namespace ServerProject
             return systemOperation.Result;
         }
 
-        internal List<StartupEvent> LoadStartupEventsCollection()
+        internal List<RegisteredQuestion> LoadStartupEventQuestions(Dictionary<string, int> argument)
         {
-            var systemOperation = new LoadStartupEventsCollectionSO();
+            var systemOperation = new LoadStartupEventQuestionsSO(argument);
             systemOperation.ExecuteTemplate();
 
             return systemOperation.Result;
@@ -125,7 +126,7 @@ namespace ServerProject
         #endregion
 
         #region UPDATE Operations
-        internal void SaveEventRegistration(StartupEventRegistration argument)
+        internal void SaveEventRegistration(FullRegistration argument)
         {
             var systemOperation = new SaveEventRegistrationSO(argument);
             systemOperation.ExecuteTemplate();

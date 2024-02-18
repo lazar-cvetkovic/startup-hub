@@ -7,16 +7,22 @@ using System.Threading.Tasks;
 
 namespace ServerProject.SystemOperations
 {
-    internal class LoadStartupEventsCollectionSO : SystemOperationBase
+    internal class LoadStartupEventQuestionsSO : SystemOperationBase
     {
-        public List<StartupEvent> Result { get; private set; }
+        public List<RegisteredQuestion> Result { get; private set; }
+        private Dictionary<string, int> _eventQuestionsId;
+
+        public LoadStartupEventQuestionsSO(Dictionary<string, int> eventQuestionsId)
+        {
+            _eventQuestionsId = eventQuestionsId;
+        }
 
         protected override void ExecuteConcreteOperation()
         {
-            var prototype = new FundingProgram();
-            var entities = _broker.GetAll(prototype, "Deadline > GETDATE()");
+            var prototype = new RegisteredQuestion();
+            var entities = _broker.LoadRegisteredQuestions(prototype, _eventQuestionsId);
 
-            Result = entities.OfType<StartupEvent>().ToList();
+            Result = entities.OfType<RegisteredQuestion>().ToList();
         }
     }
 }

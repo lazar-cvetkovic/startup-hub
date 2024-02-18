@@ -8,9 +8,7 @@ namespace Common.Enums
 {
     public enum RegistrationStatus
     {
-        Pending = 0,
-        Confirmed = 1,
-        Cancelled = 2,
-        Completed = 3
+        Attending = 0,
+        Cancelling = 1
     }
 }

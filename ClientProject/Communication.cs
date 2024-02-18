@@ -1,5 +1,6 @@
 ﻿using Common.Communication;
 using Common.Domain;
+using Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -87,7 +88,7 @@ namespace ClientProject
 
         internal Response Login(User argument) => SendServerRequest(argument, Operation.Login);
 
-        internal Response CreateEventRegistration(StartupEventRegistration argument) => SendServerRequest(argument, Operation.CreateRegistration);
+        internal Response CreateEventRegistration(FullRegistration argument) => SendServerRequest(argument, Operation.CreateRegistration);
         internal Response CreateFundingProgram(FundingProgram argument) => SendServerRequest(argument, Operation.CreateFunding);
         internal Response CreateStartupEvent(StartupEvent argument) => SendServerRequest(argument, Operation.CreateEvent);
         internal Response CreateUser(User argument) => SendServerRequest(argument, Operation.CreateUser);
@@ -101,9 +102,9 @@ namespace ClientProject
         internal Response LoadEventRegistration(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadRegistration);
         internal Response LoadFundingProgram(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadFunding);
         internal Response LoadStartupEvent(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadEvent);
-        internal Response LoadStartupEventsCollection() => SendServerRequest(null, Operation.LoadEventsCollection);
+        internal Response LoadStartupEventQuestions(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadStartupEventQuestions);
 
-        internal Response SaveEventRegistration(StartupEventRegistration argument) => SendServerRequest(argument, Operation.SaveRegistration);
+        internal Response SaveEventRegistration(FullRegistration argument) => SendServerRequest(argument, Operation.SaveRegistration);
         internal Response SaveFundingProgram(FundingProgram argument) => SendServerRequest(argument, Operation.SaveFunding);
         internal Response SaveStartupEvent(StartupEvent argument) => SendServerRequest(argument, Operation.SaveEvent);
         internal Response SaveUser(User argument) => SendServerRequest(argument, Operation.SaveUser);

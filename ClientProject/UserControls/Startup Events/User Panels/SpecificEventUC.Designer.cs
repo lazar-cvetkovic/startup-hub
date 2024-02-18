@@ -31,8 +31,9 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblPlace = new System.Windows.Forms.Label();
             this.lblEventName = new System.Windows.Forms.Label();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.lblDescription = new System.Windows.Forms.Label();
+            this.btnCreateEdit = new FontAwesome.Sharp.IconButton();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +76,39 @@
             this.lblEventName.Text = "Name of the startup event";
             this.lblEventName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblDescription
+            // 
+            this.lblDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.lblDescription.Font = new System.Drawing.Font("Manrope ExtraLight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblDescription.Location = new System.Drawing.Point(0, 259);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(1204, 252);
+            this.lblDescription.TabIndex = 21;
+            this.lblDescription.Text = "Description of the startup event";
+            // 
+            // btnCreateEdit
+            // 
+            this.btnCreateEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCreateEdit.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnCreateEdit.FlatAppearance.BorderSize = 0;
+            this.btnCreateEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateEdit.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateEdit.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateEdit.IconChar = FontAwesome.Sharp.IconChar.FileEdit;
+            this.btnCreateEdit.IconColor = System.Drawing.Color.Black;
+            this.btnCreateEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCreateEdit.IconSize = 35;
+            this.btnCreateEdit.Location = new System.Drawing.Point(452, 559);
+            this.btnCreateEdit.Name = "btnCreateEdit";
+            this.btnCreateEdit.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCreateEdit.Size = new System.Drawing.Size(299, 55);
+            this.btnCreateEdit.TabIndex = 20;
+            this.btnCreateEdit.Text = "Create Event Registration";
+            this.btnCreateEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCreateEdit.UseVisualStyleBackColor = false;
+            // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -90,28 +124,17 @@
             this.iconPictureBox1.TabIndex = 16;
             this.iconPictureBox1.TabStop = false;
             // 
-            // lblDescription
-            // 
-            this.lblDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.lblDescription.Font = new System.Drawing.Font("Manrope ExtraLight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblDescription.Location = new System.Drawing.Point(-1, 246);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(1204, 401);
-            this.lblDescription.TabIndex = 15;
-            this.lblDescription.Text = "Description of the funding program";
-            // 
             // SpecificEventUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.btnCreateEdit);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblPlace);
             this.Controls.Add(this.lblEventName);
             this.Controls.Add(this.iconPictureBox1);
-            this.Controls.Add(this.lblDescription);
             this.Name = "SpecificEventUC";
             this.Size = new System.Drawing.Size(1204, 660);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
@@ -125,6 +148,7 @@
         private System.Windows.Forms.Label lblPlace;
         private System.Windows.Forms.Label lblEventName;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconButton btnCreateEdit;
         private System.Windows.Forms.Label lblDescription;
     }
 }

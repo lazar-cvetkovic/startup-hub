@@ -1,5 +1,6 @@
 ﻿using Common.Communication;
 using Common.Domain;
+using Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -90,7 +91,7 @@ namespace ServerProject
                         return null;
 
                     case Operation.CreateRegistration:
-                        Controller.Instance.CreateEventRegistration((StartupEventRegistration)request.Argument);
+                        Controller.Instance.CreateEventRegistration((FullRegistration)request.Argument);
                         return null;
 
                     case Operation.CreateUser:
@@ -119,8 +120,8 @@ namespace ServerProject
                     case Operation.LoadRegistration:
                         return Controller.Instance.LoadEventRegistration((Dictionary<string, int>)request.Argument);
 
-                    case Operation.LoadEventsCollection:
-                        return Controller.Instance.LoadStartupEventsCollection();
+                    case Operation.LoadStartupEventQuestions:
+                        return Controller.Instance.LoadStartupEventQuestions((Dictionary<string, int>)request.Argument);
 
                     case Operation.SaveEvent:
                         Controller.Instance.SaveStartupEvent((StartupEvent)request.Argument);
@@ -131,7 +132,7 @@ namespace ServerProject
                         return null;
 
                     case Operation.SaveRegistration:
-                        Controller.Instance.SaveEventRegistration((StartupEventRegistration)request.Argument);
+                        Controller.Instance.SaveEventRegistration((FullRegistration)request.Argument);
                         return null;
 
                     case Operation.SaveUser:

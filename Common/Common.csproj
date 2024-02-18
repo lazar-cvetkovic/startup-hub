@@ -48,12 +48,13 @@
     <Compile Include="Communication\Response.cs" />
     <Compile Include="Communication\Sender.cs" />
     <Compile Include="Domain\FundingProgram.cs" />
-    <Compile Include="Domain\RegisteredActivity.cs" />
+    <Compile Include="Domain\RegisteredQuestion.cs" />
     <Compile Include="Domain\StartupEvent.cs" />
     <Compile Include="Domain\StartupEventRegistration.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Enums\RegistrationStatus.cs" />
     <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Helpers\FullRegistration.cs" />
     <Compile Include="Helpers\HelperMethods.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IEntity.cs" />

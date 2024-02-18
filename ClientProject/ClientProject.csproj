@@ -177,6 +177,12 @@
     <Compile Include="UserControls\Startup Events\StartupEventsUC.Designer.cs">
       <DependentUpon>StartupEventsUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\StartupEventRegistrationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\StartupEventRegistrationUC.Designer.cs">
+      <DependentUpon>StartupEventRegistrationUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Startup Events\StartupEventsUC.resx">
       <DependentUpon>StartupEventsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\StartupEventRegistrationUC.resx">
+      <DependentUpon>StartupEventRegistrationUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

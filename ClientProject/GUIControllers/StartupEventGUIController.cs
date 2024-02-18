@@ -35,6 +35,7 @@ namespace ClientProject.GUIControllers
 
         private bool _isUserAdmin;
         private bool _isCurrentPanelUser;
+        private SpecificEventUC _specificEventPanel;
 
         internal StartupEventsUC CreateStartupEventsUC()
         {
@@ -127,7 +128,18 @@ namespace ClientProject.GUIControllers
             _startupEventsList.ForEach(e => AddEventPreview(e, flowUC.FlowPanel));
         }
 
-        internal void ChangeToSpecificEventPanel(StartupEvent program) => ChangeUC(new SpecificEventUC(program));
+        internal void ChangeToSpecificEventPanel(StartupEvent program)
+        {
+            _specificEventPanel = new SpecificEventUC(program);
+            _specificEventPanel.BtnCreateEdit.Click += HandleCreateEventRegistrationClick;
+
+            ChangeUC(_specificEventPanel);
+        }
+
+        private void HandleCreateEventRegistrationClick(object sender, EventArgs e)
+        {
+            ChangeUC(MainCoordinator.Instance.GetRegistrationUC(_specificEventPanel.SelectedStartupEvent));
+        }
 
         private void ChangeToAdminPanel()
         {

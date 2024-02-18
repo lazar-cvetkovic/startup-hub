@@ -76,7 +76,7 @@ namespace ClientProject.GUIControllers
         {
             if (buttonSender == null || _currentButton == (IconButton)buttonSender) return;
 
-            if(_currentButton != null)
+            if (_currentButton != null)
             {
                 _currentButton.BackColor = _defaultButtonColor;
                 _currentButton.IconColor = Color.Gainsboro;
@@ -141,5 +141,7 @@ namespace ClientProject.GUIControllers
             ActivateButton(sender);
             ChangePanel(_fundingController.CreateFundingProgramsUC());
         }
+
+        internal StartupEventRegistrationUC GetRegistrationUC(StartupEvent startupEvent) => _registrationController.CreateStartupEventRegistrationUC(startupEvent);
     }
 }

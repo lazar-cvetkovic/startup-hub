@@ -13,10 +13,14 @@ namespace ClientProject.UserControls
 {
     public partial class SpecificEventUC : UserControl
     {
+        public StartupEvent SelectedStartupEvent { get; private set; }
+        public Button BtnCreateEdit => btnCreateEdit;
+
         public SpecificEventUC(StartupEvent startupEvent)
         {
             InitializeComponent();
             InitializeUI(startupEvent);
+            SelectedStartupEvent = startupEvent;
         }
 
         private void InitializeUI(StartupEvent startupEvent)

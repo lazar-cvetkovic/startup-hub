@@ -129,5 +129,37 @@ namespace DatabaseBroker
                 }
             }
         }
+
+        public List<RegisteredQuestion> LoadRegisteredQuestions(IEntity entity, Dictionary<string, int> ids)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                var whereClauses = ids.Select(id => $"{entity.TableName}.{id.Key} = @{id.Key}").ToList();
+                command.CommandText = 
+                    $"SELECT {entity.TableName}.* FROM {entity.TableName} " +
+                    $"JOIN StartupEventRegistration ON {entity.TableName}.EventId = StartupEventRegistration.EventId " +
+                                                    $"AND {entity.TableName}.UserId = StartupEventRegistration.UserId " +
+                    $"WHERE {string.Join(" AND ", whereClauses)}";
+
+                foreach (var id in ids)
+                {
+                    command.Parameters.AddWithValue($"@{id.Key}", id.Value);
+                }
+
+                Console.WriteLine(command.CommandText);
+                var questions = new List<RegisteredQuestion>();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var question = (RegisteredQuestion)entity.CreateEntity(reader);
+                        questions.Add(question);
+                    }
+                }
+
+                return questions;
+            }
+        }
     }
 }

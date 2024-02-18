@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,21 @@ namespace ServerProject.SystemOperations
 {
     internal class CreateEventRegistrationSO : SystemOperationBase
     {
-        private StartupEventRegistration _eventRegistration;
+        private FullRegistration _eventRegistration;
 
-        public CreateEventRegistrationSO(StartupEventRegistration eventRegistration)
+        public CreateEventRegistrationSO(FullRegistration eventRegistration)
         {
             _eventRegistration = eventRegistration;
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            _broker.Insert(_eventRegistration);
+            _broker.Insert(_eventRegistration.Registration);
+
+            foreach (var question in _eventRegistration.Questions)
+            {
+                _broker.Insert(question);
+            }
         }
     }
 }
