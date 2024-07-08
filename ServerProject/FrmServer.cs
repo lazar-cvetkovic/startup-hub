@@ -40,7 +40,17 @@ namespace ServerProject
 
         internal void AddClientToTable(ClientHandler clientHandler) => this.Invoke(new Action(() => _clients.Add(clientHandler)));
 
-        internal void RemoveClientInTable(ClientHandler clientHandler) => this.Invoke(new Action(() => _clients.Remove(clientHandler)));
+        internal void RemoveClientInTable(ClientHandler clientHandler)
+        {
+            try
+            {
+                this.Invoke(new Action(() => _clients.Remove(clientHandler)));
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }        
+        }
 
         private void StartServerButtonClick(object sender, EventArgs e) => StartServer();
 

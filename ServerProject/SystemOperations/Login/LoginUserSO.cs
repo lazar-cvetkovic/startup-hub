@@ -23,7 +23,16 @@ namespace ServerProject.SystemOperations
         protected override void ExecuteConcreteOperation()
         {
             var prototype = new User();
-            Result = _broker.FindUserByEmailAndPassword(prototype, _email, _password);
+
+            var criteria = new Dictionary<string, object>
+            {
+                {"Email", _email},
+                {"Password", _password}
+            };
+
+            var resultEntity = _broker.FindByColumns(prototype, criteria);
+
+            Result = resultEntity as User;
         }
     }
 }

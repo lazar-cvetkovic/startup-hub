@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.SqlClient;
 
 
@@ -11,7 +12,19 @@ namespace DatabaseBroker
 
         public DBConnection()
         {
-            _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["startuphub"].ConnectionString);
+            try
+            {
+                if(ConfigurationManager.ConnectionStrings["startuphub"] == null)
+                {
+                    throw new Exception("Database connection string is wrong!");
+                }
+                _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["startuphub"].ConnectionString);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }        
         }
 
         public void OpenConnection()

@@ -18,7 +18,14 @@ namespace DatabaseBroker
 
         public Broker()
         {
-            _connection = new DBConnection();
+            try
+            {
+                _connection = new DBConnection();
+            }
+            catch (Exception)
+            {
+                throw;
+            }        
         }
 
         #region DBConnection Methods
@@ -109,36 +116,35 @@ namespace DatabaseBroker
             }
         }
 
-        public User FindUserByEmailAndPassword(User prototype, string email, string password)
+        public IEntity FindByColumns(IEntity prototype, Dictionary<string, object> columns)
         {
-            if(StringExtensions.AreNullOrEmpty(email, password))
-            {
-                return null;
-            }
-
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM [User] WHERE Email=@email AND Password=@password";
+                var whereClauses = columns.Select(col => $"{prototype.TableName}.{col.Key} = @{col.Key}").ToList();
+                command.CommandText = $"SELECT * FROM {prototype.TableName} WHERE {string.Join(" AND ", whereClauses)}";
 
-                command.Parameters.AddWithValue("@email" , email);
-                command.Parameters.AddWithValue("@password" , password);
+                foreach (var col in columns)
+                {
+                    command.Parameters.AddWithValue($"@{col.Key}", col.Value);
+                }
 
                 using (var reader = command.ExecuteReader())
                 {
-                    return reader.Read() ? (User)prototype.CreateEntity(reader) : null;
+                    return reader.Read() ? prototype.CreateEntity(reader) : null;
                 }
             }
         }
 
-        public List<RegisteredQuestion> LoadRegisteredQuestions(IEntity entity, Dictionary<string, int> ids)
+        public List<IEntity> LoadByJoinCondition(IEntity prototype, Dictionary<string, object> ids, string joinTable, Dictionary<string, string> joinOn)
         {
             using (var command = _connection.CreateCommand())
             {
-                var whereClauses = ids.Select(id => $"{entity.TableName}.{id.Key} = @{id.Key}").ToList();
-                command.CommandText = 
-                    $"SELECT {entity.TableName}.* FROM {entity.TableName} " +
-                    $"JOIN StartupEventRegistration ON {entity.TableName}.EventId = StartupEventRegistration.EventId " +
-                                                    $"AND {entity.TableName}.UserId = StartupEventRegistration.UserId " +
+                var whereClauses = ids.Select(id => $"{prototype.TableName}.{id.Key} = @{id.Key}").ToList();
+                var joinClauses = joinOn.Select(j => $"{prototype.TableName}.{j.Key} = {joinTable}.{j.Value}").ToList();
+
+                command.CommandText =
+                    $"SELECT {prototype.TableName}.* FROM {prototype.TableName} " +
+                    $"JOIN {joinTable} ON {string.Join(" AND ", joinClauses)} " +
                     $"WHERE {string.Join(" AND ", whereClauses)}";
 
                 foreach (var id in ids)
@@ -146,19 +152,17 @@ namespace DatabaseBroker
                     command.Parameters.AddWithValue($"@{id.Key}", id.Value);
                 }
 
-                Console.WriteLine(command.CommandText);
-                var questions = new List<RegisteredQuestion>();
-
+                var entities = new List<IEntity>();
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var question = (RegisteredQuestion)entity.CreateEntity(reader);
-                        questions.Add(question);
+                        var entity = prototype.CreateEntity(reader);
+                        entities.Add(entity);
                     }
                 }
 
-                return questions;
+                return entities;
             }
         }
     }

@@ -30,7 +30,18 @@ namespace ServerProject
 
         private Broker _broker;
 
-        private Controller() => _broker = new Broker();
+        private Controller()
+        {
+            try
+            {
+                _broker = new Broker();
+
+            }
+            catch (Exception e)
+            {
+                HelperMethods.ShowErrorMessage(e.Message);
+            }        
+        }
 
         internal User Login(User argument)
         {

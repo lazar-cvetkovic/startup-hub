@@ -20,7 +20,16 @@ namespace ServerProject.SystemOperations
         protected override void ExecuteConcreteOperation()
         {
             var prototype = new RegisteredQuestion();
-            var entities = _broker.LoadRegisteredQuestions(prototype, _eventQuestionsId);
+            string joinTable = "StartupEventRegistration";
+            Dictionary<string, string> joinOn = new Dictionary<string, string>
+            {
+                {"EventId", "EventId"},
+                {"UserId", "UserId"}
+            };
+
+            var ids = new Dictionary<string, object>(_eventQuestionsId.ToDictionary(k => k.Key, v => (object)v.Value));
+
+            var entities = _broker.LoadByJoinCondition(prototype, ids, joinTable, joinOn);
 
             Result = entities.OfType<RegisteredQuestion>().ToList();
         }
