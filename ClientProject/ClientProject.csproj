@@ -177,6 +177,30 @@
     <Compile Include="UserControls\Startup Events\StartupEventsUC.Designer.cs">
       <DependentUpon>StartupEventsUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Startup Pitch\Admin Panels\PitchPreviewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\Admin Panels\PitchPreviewUC.Designer.cs">
+      <DependentUpon>PitchPreviewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\Admin Panels\SpecificPitchUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\Admin Panels\SpecificPitchUC.Designer.cs">
+      <DependentUpon>SpecificPitchUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\User Panels\CreateStartupPitchUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\User Panels\CreateStartupPitchUC.Designer.cs">
+      <DependentUpon>CreateStartupPitchUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\User Panels\StartupPitchAnswerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\User Panels\StartupPitchAnswerUC.Designer.cs">
+      <DependentUpon>StartupPitchAnswerUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\StartupEventRegistrationUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -244,6 +268,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Startup Events\StartupEventsUC.resx">
       <DependentUpon>StartupEventsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Pitch\Admin Panels\PitchPreviewUC.resx">
+      <DependentUpon>PitchPreviewUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Pitch\Admin Panels\SpecificPitchUC.resx">
+      <DependentUpon>SpecificPitchUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Pitch\User Panels\CreateStartupPitchUC.resx">
+      <DependentUpon>CreateStartupPitchUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Pitch\User Panels\StartupPitchAnswerUC.resx">
+      <DependentUpon>StartupPitchAnswerUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StartupEventRegistrationUC.resx">
       <DependentUpon>StartupEventRegistrationUC.cs</DependentUpon>
