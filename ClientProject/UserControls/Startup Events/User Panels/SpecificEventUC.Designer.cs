@@ -41,7 +41,7 @@
             // 
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.lblDate.Font = new System.Drawing.Font("Manrope ExtraLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblDate.Location = new System.Drawing.Point(-1, 157);
             this.lblDate.Name = "lblDate";
@@ -54,7 +54,7 @@
             // 
             this.lblPlace.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPlace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.lblPlace.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlace.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblPlace.Location = new System.Drawing.Point(2, 111);
             this.lblPlace.Name = "lblPlace";
@@ -67,7 +67,7 @@
             // 
             this.lblEventName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblEventName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.lblEventName.Font = new System.Drawing.Font("Manrope ExtraLight", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEventName.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblEventName.Location = new System.Drawing.Point(-1, 65);
             this.lblEventName.Name = "lblEventName";
@@ -80,7 +80,7 @@
             // 
             this.lblDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.lblDescription.Font = new System.Drawing.Font("Manrope ExtraLight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescription.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblDescription.Location = new System.Drawing.Point(0, 259);
             this.lblDescription.Name = "lblDescription";
@@ -94,16 +94,16 @@
             this.btnCreateEdit.BackColor = System.Drawing.Color.Aquamarine;
             this.btnCreateEdit.FlatAppearance.BorderSize = 0;
             this.btnCreateEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateEdit.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateEdit.ForeColor = System.Drawing.Color.Black;
             this.btnCreateEdit.IconChar = FontAwesome.Sharp.IconChar.FileEdit;
             this.btnCreateEdit.IconColor = System.Drawing.Color.Black;
             this.btnCreateEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCreateEdit.IconSize = 35;
-            this.btnCreateEdit.Location = new System.Drawing.Point(452, 559);
+            this.btnCreateEdit.Location = new System.Drawing.Point(414, 547);
             this.btnCreateEdit.Name = "btnCreateEdit";
             this.btnCreateEdit.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnCreateEdit.Size = new System.Drawing.Size(299, 55);
+            this.btnCreateEdit.Size = new System.Drawing.Size(367, 55);
             this.btnCreateEdit.TabIndex = 20;
             this.btnCreateEdit.Text = "Create Event Registration";
             this.btnCreateEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

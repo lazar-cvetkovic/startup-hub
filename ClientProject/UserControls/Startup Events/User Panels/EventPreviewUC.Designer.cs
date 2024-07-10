@@ -51,7 +51,7 @@
             this.btnReadMore.BackColor = System.Drawing.Color.Gainsboro;
             this.btnReadMore.FlatAppearance.BorderSize = 0;
             this.btnReadMore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReadMore.Font = new System.Drawing.Font("Manrope ExtraLight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReadMore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReadMore.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnReadMore.IconColor = System.Drawing.Color.Black;
             this.btnReadMore.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -68,7 +68,7 @@
             // 
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDate.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.lblDate.Font = new System.Drawing.Font("Manrope ExtraLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblDate.Location = new System.Drawing.Point(14, 88);
             this.lblDate.Name = "lblDate";
@@ -81,11 +81,11 @@
             // 
             this.lblEventName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblEventName.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.lblEventName.Font = new System.Drawing.Font("Manrope ExtraLight", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEventName.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblEventName.Location = new System.Drawing.Point(13, 34);
+            this.lblEventName.Location = new System.Drawing.Point(13, 25);
             this.lblEventName.Name = "lblEventName";
-            this.lblEventName.Size = new System.Drawing.Size(203, 54);
+            this.lblEventName.Size = new System.Drawing.Size(203, 63);
             this.lblEventName.TabIndex = 4;
             this.lblEventName.Text = "Name of the startup event";
             this.lblEventName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

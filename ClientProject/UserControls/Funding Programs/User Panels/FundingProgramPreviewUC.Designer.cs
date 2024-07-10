@@ -41,7 +41,7 @@
             // 
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblDate.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.lblDate.Font = new System.Drawing.Font("Manrope ExtraLight", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblDate.Location = new System.Drawing.Point(14, 88);
             this.lblDate.Name = "lblDate";
@@ -54,11 +54,11 @@
             // 
             this.lblProgramName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblProgramName.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.lblProgramName.Font = new System.Drawing.Font("Manrope ExtraLight", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProgramName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgramName.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblProgramName.Location = new System.Drawing.Point(13, 34);
+            this.lblProgramName.Location = new System.Drawing.Point(13, 20);
             this.lblProgramName.Name = "lblProgramName";
-            this.lblProgramName.Size = new System.Drawing.Size(203, 54);
+            this.lblProgramName.Size = new System.Drawing.Size(203, 68);
             this.lblProgramName.TabIndex = 8;
             this.lblProgramName.Text = "Name of the funding program";
             this.lblProgramName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,7 +68,7 @@
             this.btnReadMore.BackColor = System.Drawing.Color.Gainsboro;
             this.btnReadMore.FlatAppearance.BorderSize = 0;
             this.btnReadMore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReadMore.Font = new System.Drawing.Font("Manrope ExtraLight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReadMore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReadMore.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnReadMore.IconColor = System.Drawing.Color.Black;
             this.btnReadMore.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -95,7 +95,7 @@
             // 
             this.lblAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAmount.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.lblAmount.Font = new System.Drawing.Font("Manrope ExtraLight", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount.ForeColor = System.Drawing.Color.Aquamarine;
             this.lblAmount.Location = new System.Drawing.Point(14, 142);
             this.lblAmount.Name = "lblAmount";

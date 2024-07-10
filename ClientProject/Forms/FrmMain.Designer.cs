@@ -68,7 +68,7 @@
             this.btnFundingPrograms.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnFundingPrograms.FlatAppearance.BorderSize = 0;
             this.btnFundingPrograms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFundingPrograms.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFundingPrograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFundingPrograms.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnFundingPrograms.IconChar = FontAwesome.Sharp.IconChar.House;
             this.btnFundingPrograms.IconColor = System.Drawing.Color.Gainsboro;
@@ -91,7 +91,7 @@
             this.btnStartupEvents.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStartupEvents.FlatAppearance.BorderSize = 0;
             this.btnStartupEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartupEvents.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartupEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartupEvents.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnStartupEvents.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
             this.btnStartupEvents.IconColor = System.Drawing.Color.Gainsboro;
@@ -114,7 +114,7 @@
             this.btnHome.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnHome.FlatAppearance.BorderSize = 0;
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome.Font = new System.Drawing.Font("Manrope ExtraLight Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnHome.IconChar = FontAwesome.Sharp.IconChar.House;
             this.btnHome.IconColor = System.Drawing.Color.Gainsboro;
@@ -146,13 +146,13 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bebas", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Aquamarine;
-            this.label1.Location = new System.Drawing.Point(72, 18);
+            this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 35);
+            this.label1.Size = new System.Drawing.Size(217, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "Startup Hub";
             // 
@@ -227,7 +227,7 @@
             // 
             this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.lblTitle.Font = new System.Drawing.Font("Manrope ExtraLight ExtraLight", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.lblTitle.Location = new System.Drawing.Point(450, 5);
             this.lblTitle.Name = "lblTitle";
