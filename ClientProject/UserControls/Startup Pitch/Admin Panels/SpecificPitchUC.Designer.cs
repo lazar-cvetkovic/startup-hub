@@ -71,6 +71,7 @@
             this.btnDownloadPitch.Text = "Download Pitch";
             this.btnDownloadPitch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDownloadPitch.UseVisualStyleBackColor = false;
+            this.btnDownloadPitch.Click += new System.EventHandler(this.HandleDownloadButtonClick);
             // 
             // lblName
             // 

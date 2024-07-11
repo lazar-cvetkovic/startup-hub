@@ -131,7 +131,7 @@ namespace ServerProject
                         return Controller.Instance.LoadStartupEventQuestions((Dictionary<string, int>)request.Argument);
 
                     case Operation.LoadPitch:
-                        return Controller.Instance.LoadStartupPitch((Dictionary<string, int>)request.Argument); ;
+                        return Controller.Instance.LoadStartupPitch((Dictionary<string, object>)request.Argument); ;
 
                     case Operation.SaveEvent:
                         Controller.Instance.SaveStartupEvent((StartupEvent)request.Argument);

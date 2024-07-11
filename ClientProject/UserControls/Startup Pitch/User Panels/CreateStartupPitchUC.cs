@@ -51,7 +51,8 @@ namespace ClientProject.UserControls.Startup_Pitch.User_Panels
             Description = txtDescription.Text,
             UserId = MainCoordinator.Instance.ConnectedUser.Id,
             PitchFileData = _fileData,
-            PitchFileName = _fileName
+            PitchFileName = _fileName,
+            Feedback = string.Empty
         };
 
         private void HandleUploadFileClick(object sender, EventArgs e)

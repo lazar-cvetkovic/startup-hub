@@ -153,7 +153,7 @@ namespace ServerProject
             return systemOperation.Result;
         }
 
-        internal StartupPitch LoadStartupPitch(Dictionary<string, int> argument)
+        internal StartupPitch LoadStartupPitch(Dictionary<string, object> argument)
         {
             var systemOperation = new LoadStartupPitchSO(argument);
             systemOperation.ExecuteTemplate();

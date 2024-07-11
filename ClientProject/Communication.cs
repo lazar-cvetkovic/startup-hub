@@ -104,7 +104,7 @@ namespace ClientProject
         internal Response LoadEventRegistration(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadRegistration);
         internal Response LoadFundingProgram(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadFunding);
         internal Response LoadStartupEvent(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadEvent);
-        internal Response LoadStartupPitch(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadPitch);
+        internal Response LoadStartupPitch(Dictionary<string, object> argument) => SendServerRequest(argument, Operation.LoadPitch);
         internal Response LoadStartupEventQuestions(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadStartupEventQuestions);
 
         internal Response SaveEventRegistration(FullRegistration argument) => SendServerRequest(argument, Operation.SaveRegistration);

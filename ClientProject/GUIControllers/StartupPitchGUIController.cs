@@ -27,6 +27,9 @@ namespace ClientProject.GUIControllers
         {
             _isUserAdmin = MainCoordinator.Instance.ConnectedUser.Role == UserRole.Admin;
 
+            var pitchUC = new StartupPitchUC();
+            _mainPanel = pitchUC.MainPanel;
+
             if (_isUserAdmin)
             {
                 SetupAdmin();
@@ -35,9 +38,6 @@ namespace ClientProject.GUIControllers
             {
                 SetupUser();
             }
-
-            var pitchUC = new StartupPitchUC();
-            _mainPanel = pitchUC.MainPanel;
 
             return pitchUC;
         }
@@ -67,7 +67,7 @@ namespace ClientProject.GUIControllers
 
         private void SetupUser()
         {
-            var response = GetStartupPitchById(MainCoordinator.Instance.ConnectedUser.Id);
+            var response = GetStartupPitchByColumn("UserId", MainCoordinator.Instance.ConnectedUser.Id);
 
             if (response.exception != null)
             {
@@ -143,7 +143,7 @@ namespace ClientProject.GUIControllers
             }
 
             int id = (int)button.Tag;
-            var response = GetStartupPitchById(id);
+            var response = GetStartupPitchByColumn("Id", id);
 
             if (response.exception != null)
             {
@@ -206,11 +206,14 @@ namespace ClientProject.GUIControllers
         }
 
         #region Database Methods
-        private (StartupPitch startupPitch, Exception exception) GetStartupPitchById(int id)
+        private (StartupPitch startupPitch, Exception exception) GetStartupPitchByColumn(string columnName, object cellValue)
         {
-            var primaryKey = new Dictionary<string, int>() { { "Id", id } };
+            var searchParameters = new Dictionary<string, object>()
+            {
+                { columnName, cellValue }
+            };
 
-            var response = Communication.Instance.LoadStartupPitch(primaryKey);
+            var response = Communication.Instance.LoadStartupPitch(searchParameters);
 
             return ((StartupPitch)response.Result, response.Exception);
         }

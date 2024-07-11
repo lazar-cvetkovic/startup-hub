@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnYourStartup = new FontAwesome.Sharp.IconButton();
             this.btnFundingPrograms = new FontAwesome.Sharp.IconButton();
             this.btnStartupEvents = new FontAwesome.Sharp.IconButton();
             this.btnHome = new FontAwesome.Sharp.IconButton();
@@ -41,7 +42,6 @@
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.btnYourStartup = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitle.SuspendLayout();
@@ -63,6 +63,29 @@
             this.panelMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseClickStart);
             this.panelMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMovement);
             this.panelMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseClickEnd);
+            // 
+            // btnYourStartup
+            // 
+            this.btnYourStartup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.btnYourStartup.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnYourStartup.FlatAppearance.BorderSize = 0;
+            this.btnYourStartup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYourStartup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYourStartup.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnYourStartup.IconChar = FontAwesome.Sharp.IconChar.UserAstronaut;
+            this.btnYourStartup.IconColor = System.Drawing.Color.Gainsboro;
+            this.btnYourStartup.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnYourStartup.IconSize = 35;
+            this.btnYourStartup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnYourStartup.Location = new System.Drawing.Point(0, 255);
+            this.btnYourStartup.Name = "btnYourStartup";
+            this.btnYourStartup.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnYourStartup.Size = new System.Drawing.Size(300, 60);
+            this.btnYourStartup.TabIndex = 9;
+            this.btnYourStartup.Text = " Your Startup";
+            this.btnYourStartup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnYourStartup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnYourStartup.UseVisualStyleBackColor = false;
             // 
             // btnFundingPrograms
             // 
@@ -148,15 +171,15 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Nulshock Rg", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Aquamarine;
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(14, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 33);
+            this.label1.Size = new System.Drawing.Size(269, 35);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Startup Hub";
+            this.label1.Text = "STARTUP HUB";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelTitle
             // 
@@ -249,29 +272,6 @@
             this.panelMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseClickStart);
             this.panelMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMovement);
             this.panelMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseClickEnd);
-            // 
-            // btnYourStartup
-            // 
-            this.btnYourStartup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.btnYourStartup.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnYourStartup.FlatAppearance.BorderSize = 0;
-            this.btnYourStartup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnYourStartup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnYourStartup.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnYourStartup.IconChar = FontAwesome.Sharp.IconChar.UserAstronaut;
-            this.btnYourStartup.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnYourStartup.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnYourStartup.IconSize = 35;
-            this.btnYourStartup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnYourStartup.Location = new System.Drawing.Point(0, 255);
-            this.btnYourStartup.Name = "btnYourStartup";
-            this.btnYourStartup.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnYourStartup.Size = new System.Drawing.Size(300, 60);
-            this.btnYourStartup.TabIndex = 9;
-            this.btnYourStartup.Text = " Your Startup";
-            this.btnYourStartup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnYourStartup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnYourStartup.UseVisualStyleBackColor = false;
             // 
             // FrmMain
             // 

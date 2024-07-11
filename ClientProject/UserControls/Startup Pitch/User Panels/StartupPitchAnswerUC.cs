@@ -28,10 +28,14 @@ namespace ClientProject.UserControls.Startup_Pitch.User_Panels
 
         private void HandleStartingState()
         {
-            bool wasFeedbackSent = _startupPitch.Feedback != null;
+            bool wasFeedbackSent = _startupPitch.Feedback != string.Empty;
 
             lblFeedback.Text = wasFeedbackSent ? TitleForFeedback : TitleForWaiting;
+            txtFeedback.BackColor = wasFeedbackSent ? Color.Gainsboro : Color.DarkGray;
             txtFeedback.Enabled = false;
+
+            if (wasFeedbackSent) 
+                txtFeedback.Text = "\n" + _startupPitch.Feedback;
         }
     }
 }
