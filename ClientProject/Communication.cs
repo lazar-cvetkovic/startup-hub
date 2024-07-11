@@ -91,6 +91,7 @@ namespace ClientProject
         internal Response CreateEventRegistration(FullRegistration argument) => SendServerRequest(argument, Operation.CreateRegistration);
         internal Response CreateFundingProgram(FundingProgram argument) => SendServerRequest(argument, Operation.CreateFunding);
         internal Response CreateStartupEvent(StartupEvent argument) => SendServerRequest(argument, Operation.CreateEvent);
+        internal Response CreateStartupPitch(StartupPitch argument) => SendServerRequest(argument, Operation.CreatePitch);
         internal Response CreateUser(User argument) => SendServerRequest(argument, Operation.CreateUser);
 
         internal Response DeleteStartupEvent(StartupEvent argument) => SendServerRequest(argument, Operation.DeleteEvent);
@@ -98,15 +99,18 @@ namespace ClientProject
         internal Response FindEventRegistrations() => SendServerRequest(null, Operation.FindRegistrations);
         internal Response FindFundingPrograms() => SendServerRequest(null, Operation.FindFundings);
         internal Response FindStartupEvents() => SendServerRequest(null, Operation.FindEvents);
+        internal Response FindStartupPitches() => SendServerRequest(null, Operation.FindPitches);
 
         internal Response LoadEventRegistration(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadRegistration);
         internal Response LoadFundingProgram(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadFunding);
         internal Response LoadStartupEvent(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadEvent);
+        internal Response LoadStartupPitch(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadPitch);
         internal Response LoadStartupEventQuestions(Dictionary<string, int> argument) => SendServerRequest(argument, Operation.LoadStartupEventQuestions);
 
         internal Response SaveEventRegistration(FullRegistration argument) => SendServerRequest(argument, Operation.SaveRegistration);
         internal Response SaveFundingProgram(FundingProgram argument) => SendServerRequest(argument, Operation.SaveFunding);
         internal Response SaveStartupEvent(StartupEvent argument) => SendServerRequest(argument, Operation.SaveEvent);
+        internal Response SaveStartupPitch(StartupPitch argument) => SendServerRequest(argument, Operation.SavePitch);
         internal Response SaveUser(User argument) => SendServerRequest(argument, Operation.SaveUser);
     }
 }

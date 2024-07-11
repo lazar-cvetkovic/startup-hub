@@ -3,6 +3,9 @@ using Common.Helpers;
 using DatabaseBroker;
 using ServerProject.SystemOperations;
 using ServerProject.SystemOperations.Create;
+using ServerProject.SystemOperations.Find;
+using ServerProject.SystemOperations.Load;
+using ServerProject.SystemOperations.Save;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +79,12 @@ namespace ServerProject
             systemOperation.ExecuteTemplate();
         }
 
+        internal void CreateStartupPitch(StartupPitch argument)
+        {
+            var systemOperation = new CreateStartupPitchSO(argument);
+            systemOperation.ExecuteTemplate();
+        }
+
         #endregion
 
         #region SELECT Operations
@@ -102,6 +111,15 @@ namespace ServerProject
 
             return systemOperation.Result;
         }
+
+        internal List<StartupPitch> FindStartupPitches()
+        {
+            var systemOperation = new FindStartupPitchesSO();
+            systemOperation.ExecuteTemplate();
+
+            return systemOperation.Result;
+        }
+
 
         internal List<RegisteredQuestion> LoadStartupEventQuestions(Dictionary<string, int> argument)
         {
@@ -134,6 +152,14 @@ namespace ServerProject
 
             return systemOperation.Result;
         }
+
+        internal StartupPitch LoadStartupPitch(Dictionary<string, int> argument)
+        {
+            var systemOperation = new LoadStartupPitchSO(argument);
+            systemOperation.ExecuteTemplate();
+
+            return systemOperation.Result;
+        }
         #endregion
 
         #region UPDATE Operations
@@ -158,6 +184,12 @@ namespace ServerProject
         internal void SaveUser(User argument)
         {
             var systemOperation = new SaveUserSO(argument);
+            systemOperation.ExecuteTemplate();
+        }
+
+        internal void SaveStartupPitch(StartupPitch argument)
+        {
+            var systemOperation = new SaveStartupPitchSO(argument);
             systemOperation.ExecuteTemplate();
         }
         #endregion

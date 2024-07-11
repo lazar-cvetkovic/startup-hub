@@ -98,6 +98,10 @@ namespace ServerProject
                         Controller.Instance.CreateUser((User)request.Argument);
                         return null;
 
+                    case Operation.CreatePitch:
+                        Controller.Instance.CreateStartupPitch((StartupPitch)request.Argument);
+                        return null;
+
                     case Operation.DeleteEvent:
                         Controller.Instance.DeleteStartupEvent((StartupEvent)request.Argument);
                         return null;
@@ -111,6 +115,9 @@ namespace ServerProject
                     case Operation.FindRegistrations:
                         return Controller.Instance.FindEventRegistrations();
 
+                    case Operation.FindPitches:
+                        return Controller.Instance.FindStartupPitches();
+
                     case Operation.LoadEvent:
                         return Controller.Instance.LoadStartupEvent((Dictionary<string, int>)request.Argument);
 
@@ -122,6 +129,9 @@ namespace ServerProject
 
                     case Operation.LoadStartupEventQuestions:
                         return Controller.Instance.LoadStartupEventQuestions((Dictionary<string, int>)request.Argument);
+
+                    case Operation.LoadPitch:
+                        return Controller.Instance.LoadStartupPitch((Dictionary<string, int>)request.Argument); ;
 
                     case Operation.SaveEvent:
                         Controller.Instance.SaveStartupEvent((StartupEvent)request.Argument);
@@ -137,6 +147,10 @@ namespace ServerProject
 
                     case Operation.SaveUser:
                         Controller.Instance.SaveUser((User)request.Argument);
+                        return null;
+
+                    case Operation.SavePitch:
+                        Controller.Instance.SaveStartupPitch((StartupPitch)request.Argument);
                         return null;
 
                     default:

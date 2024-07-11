@@ -24,6 +24,10 @@ namespace Common.Communication
         SaveFunding = 13,
         SaveRegistration = 14,
         SaveUser = 15,
-        CreateUser = 16
+        CreateUser = 16,
+        CreatePitch = 17,
+        SavePitch = 18,
+        LoadPitch = 19,
+        FindPitches = 20
     }
 }

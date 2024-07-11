@@ -51,6 +51,7 @@
     <Compile Include="Domain\RegisteredQuestion.cs" />
     <Compile Include="Domain\StartupEvent.cs" />
     <Compile Include="Domain\StartupEventRegistration.cs" />
+    <Compile Include="Domain\StartupPitch.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Enums\RegistrationStatus.cs" />
     <Compile Include="Enums\UserRole.cs" />

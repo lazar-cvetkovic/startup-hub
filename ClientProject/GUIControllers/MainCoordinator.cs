@@ -39,6 +39,7 @@ namespace ClientProject.GUIControllers
         private FundingProgramGUIController _fundingController;
         private StartupEventGUIController _startupEventController;
         private UserGUIController _userController;
+        private StartupPitchGUIController _startupPitchController;
 
         private Label _titleLabel;
         private Panel _mainPanel;
@@ -50,6 +51,7 @@ namespace ClientProject.GUIControllers
             _fundingController = new FundingProgramGUIController();
             _startupEventController = new StartupEventGUIController();
             _userController = new UserGUIController();
+            _startupPitchController = new StartupPitchGUIController();
         }
 
         internal void InitializeMainForm(Label titleLabel, Button homeButton, Panel mainPanel)
@@ -140,6 +142,12 @@ namespace ClientProject.GUIControllers
         {
             ActivateButton(sender);
             ChangePanel(_fundingController.CreateFundingProgramsUC());
+        }
+
+        internal void ShowStartupPitchUC(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            ChangePanel(_startupPitchController.CreateStartupPitchUC());
         }
 
         internal StartupEventRegistrationUC GetRegistrationUC(StartupEvent startupEvent) => _registrationController.CreateStartupEventRegistrationUC(startupEvent);

@@ -12,9 +12,14 @@ namespace ClientProject.UserControls.Startup_Pitch.Admin_Panels
 {
     public partial class PitchPreviewUC : UserControl
     {
-        public PitchPreviewUC()
+        public PitchPreviewUC(int id, string name)
         {
             InitializeComponent();
+
+            lblName.Text = name;
+            btnFeedback.Tag = id;
         }
+
+        public Button BtnFeedback { get => btnFeedback; }
     }
 }

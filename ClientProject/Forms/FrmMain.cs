@@ -33,6 +33,7 @@ namespace ClientProject.Forms
             btnFundingPrograms.Click += MainCoordinator.Instance.ShowFundingProgramsUC;
             btnHome.Click += MainCoordinator.Instance.ShowHomeUC;
             btnStartupEvents.Click += MainCoordinator.Instance.ShowStartupEventsUC;
+            btnYourStartup.Click += MainCoordinator.Instance.ShowStartupPitchUC;
         }
 
         #region Custom Windows Buttons

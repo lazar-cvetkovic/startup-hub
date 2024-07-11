@@ -78,6 +78,7 @@
     <Compile Include="GUIControllers\FundingProgramGUIController.cs" />
     <Compile Include="GUIControllers\MainCoordinator.cs" />
     <Compile Include="GUIControllers\StartupEventGUIController.cs" />
+    <Compile Include="GUIControllers\StartupPitchGUIController.cs" />
     <Compile Include="GUIControllers\UserGUIController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +190,12 @@
     <Compile Include="UserControls\Startup Pitch\Admin Panels\SpecificPitchUC.Designer.cs">
       <DependentUpon>SpecificPitchUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Startup Pitch\StartupPitchUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Startup Pitch\StartupPitchUC.Designer.cs">
+      <DependentUpon>StartupPitchUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Startup Pitch\User Panels\CreateStartupPitchUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -274,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Startup Pitch\Admin Panels\SpecificPitchUC.resx">
       <DependentUpon>SpecificPitchUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Startup Pitch\StartupPitchUC.resx">
+      <DependentUpon>StartupPitchUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Startup Pitch\User Panels\CreateStartupPitchUC.resx">
       <DependentUpon>CreateStartupPitchUC.cs</DependentUpon>
