@@ -54,10 +54,12 @@ namespace ClientProject.GUIControllers
             _startupPitchController = new StartupPitchGUIController();
         }
 
-        internal void InitializeMainForm(Label titleLabel, Button homeButton, Panel mainPanel)
+        internal void InitializeMainForm(Label titleLabel, Button homeButton, Panel mainPanel, Button yourStartup)
         {
             _titleLabel = titleLabel;
             _mainPanel = mainPanel;
+            bool isAdmin = ConnectedUser.Role == Common.Enums.UserRole.Admin;
+            yourStartup.Text = isAdmin ? "All startups" : "Your startup";
             ActivateButton(homeButton);
             ChangePanel(new HomeUC());
         }

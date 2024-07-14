@@ -81,7 +81,7 @@
             this.lblProgramName.Name = "lblProgramName";
             this.lblProgramName.Size = new System.Drawing.Size(1204, 46);
             this.lblProgramName.TabIndex = 41;
-            this.lblProgramName.Text = "Send a Startup Pitch Deck";
+            this.lblProgramName.Text = "Send Your Startup Pitch Deck / Game";
             this.lblProgramName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -159,7 +159,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(504, 33);
             this.label1.TabIndex = 45;
-            this.label1.Text = "Upload your pitch deck";
+            this.label1.Text = "Upload your pitch deck or .zip game file";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFileName

@@ -35,6 +35,7 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.txtFeedback = new System.Windows.Forms.RichTextBox();
             this.btnSendFeedback = new FontAwesome.Sharp.IconButton();
+            this.BtnPlayGame = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,11 +148,35 @@
             this.btnSendFeedback.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSendFeedback.UseVisualStyleBackColor = false;
             // 
+            // BtnPlayGame
+            // 
+            this.BtnPlayGame.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnPlayGame.BackColor = System.Drawing.Color.MediumPurple;
+            this.BtnPlayGame.FlatAppearance.BorderSize = 0;
+            this.BtnPlayGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPlayGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPlayGame.ForeColor = System.Drawing.Color.Black;
+            this.BtnPlayGame.IconChar = FontAwesome.Sharp.IconChar.Gamepad;
+            this.BtnPlayGame.IconColor = System.Drawing.Color.Black;
+            this.BtnPlayGame.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnPlayGame.IconSize = 35;
+            this.BtnPlayGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnPlayGame.Location = new System.Drawing.Point(300, 579);
+            this.BtnPlayGame.Name = "BtnPlayGame";
+            this.BtnPlayGame.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.BtnPlayGame.Size = new System.Drawing.Size(179, 55);
+            this.BtnPlayGame.TabIndex = 42;
+            this.BtnPlayGame.Text = "Play Game";
+            this.BtnPlayGame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnPlayGame.UseVisualStyleBackColor = false;
+            this.BtnPlayGame.Click += new System.EventHandler(this.HandlePlayGameClick);
+            // 
             // SpecificPitchUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.Controls.Add(this.BtnPlayGame);
             this.Controls.Add(this.btnSendFeedback);
             this.Controls.Add(this.txtFeedback);
             this.Controls.Add(this.iconPictureBox1);
@@ -175,5 +200,6 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.RichTextBox txtFeedback;
         private FontAwesome.Sharp.IconButton btnSendFeedback;
+        private FontAwesome.Sharp.IconButton BtnPlayGame;
     }
 }
